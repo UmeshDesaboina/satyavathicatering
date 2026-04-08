@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Satyavathi Caterings | Royal Culinary Legacy</title>
+  <!-- Google Fonts + Font Awesome + Swiper JS -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #0a0806;
+      color: #f5efe7;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    :root {
+      --gold-primary: #d4af37;
+      --gold-light: #f3e5ab;
+      --gold-dark: #b8901d;
+      --dark-bg: #0a0806;
+      --charcoal: #1a1612;
+      --cream: #fef8ed;
+      --ruby: #9e2a2a;
+      --emerald: #2d6a4f;
+      --shadow-gold: 0 25px 45px -12px rgba(212, 175, 55, 0.35);
+      --glow-gold: 0 0 20px rgba(212, 175, 55, 0.3);
+    }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #1e1b16; }
+    ::-webkit-scrollbar-thumb { background: var(--gold-primary); border-radius: 10px; }
+
+    /* Navigation */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(10, 8, 6, 0.96);
+      backdrop-filter: blur(15px);
+      z-index: 1000;
+      padding: 0.7rem 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+    }
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      cursor: pointer;
+    }
+    .logo-img {
+      width: 55px;
+      height: 55px;
+      background: linear-gradient(135deg, var(--gold-primary), var(--gold-dark));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #0a0806;
+      box-shadow: 0 0 20px rgba(212,175,55,0.5);
+      animation: pulseGlow 2s infinite;
+    }
+    @keyframes pulseGlow {
+      0% { box-shadow: 0 0 0 0 rgba(212,175,55,0.4); }
+      70% { box-shadow: 0 0 0 10px rgba(212,175,55,0); }
+      100% { box-shadow: 0 0 0 0 rgba(212,175,55,0); }
+    }
+    .logo-text h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #fff, var(--gold-light));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .logo-text p {
+      font-size: 0.6rem;
+      letter-spacing: 3px;
+      color: var(--gold-primary);
+    }
+    .nav-links {
+      display: flex;
+      gap: 2.2rem;
+      align-items: center;
+    }
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 500;
+      color: #e0d6c6;
+      transition: 0.3s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--gold-primary);
+      transition: width 0.3s;
+    }
+    .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+    .nav-links a:hover, .nav-links a.active { color: var(--gold-primary); }
+    .download-menu-btn {
+      background: transparent;
+      border: 1.5px solid var(--gold-primary);
+      padding: 0.5rem 1.2rem;
+      border-radius: 40px;
+      color: var(--gold-primary);
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .download-menu-btn:hover { background: var(--gold-primary); color: #0a0806; transform: scale(1.05); }
+    .menu-toggle { display: none; font-size: 1.8rem; color: var(--gold-primary); cursor: pointer; }
+
+    /* Hero Slider with Parallax */
+    .hero {
+      min-height: 100vh;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-slider {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+    .hero-slider .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 1.5s ease-in-out;
+      transform: scale(1.05);
+      animation: slowZoom 20s infinite alternate;
+    }
+    @keyframes slowZoom {
+      0% { transform: scale(1.05); }
+      100% { transform: scale(1.15); }
+    }
+    .hero-slider .slide.active { opacity: 1; }
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(0,0,0,0.75), rgba(0,0,0,0.6));
+      z-index: 1;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8rem 2rem 5rem;
+    }
+    .hero-inner { max-width: 950px; }
+    .hero-badge {
+      background: rgba(212, 175, 55, 0.15);
+      backdrop-filter: blur(8px);
+      display: inline-block;
+      padding: 0.5rem 1.5rem;
+      border-radius: 40px;
+      font-size: 0.75rem;
+      color: var(--gold-light);
+      border: 1px solid rgba(212,175,55,0.5);
+      margin-bottom: 1.5rem;
+      animation: float 3s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 5rem;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #fff, var(--gold-light));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .hero-tagline {
+      font-size: 1.4rem;
+      font-style: italic;
+      color: var(--gold-light);
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      font-size: 1.1rem;
+      font-weight: 300;
+      max-width: 700px;
+      margin: 0 auto 2rem;
+    }
+    .btn-group {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--gold-primary), var(--gold-dark));
+      color: #0a0806;
+      border: none;
+      padding: 1rem 2.4rem;
+      font-weight: 700;
+      border-radius: 50px;
+      transition: 0.3s;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: left 0.5s;
+    }
+    .btn-primary:hover::before { left: 100%; }
+    .btn-primary:hover { transform: translateY(-4px); box-shadow: var(--shadow-gold); }
+    .btn-outline {
+      background: transparent;
+      border: 1.5px solid var(--gold-primary);
+      color: white;
+      padding: 0.95rem 2.2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+    .btn-outline:hover { background: var(--gold-primary); color: black; transform: translateY(-4px); }
+
+    /* Stats with Counters */
+    .stats {
+      background: linear-gradient(135deg, #12100c, #1a1612);
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      text-align: center;
+      gap: 2rem;
+      padding: 4rem 6%;
+      border-top: 1px solid rgba(212,175,55,0.2);
+      border-bottom: 1px solid rgba(212,175,55,0.2);
+    }
+    .stat-item h2 { font-size: 3rem; color: var(--gold-primary); font-weight: 800; }
+    .stat-item p { letter-spacing: 1px; }
+
+    /* Sections */
+    section { padding: 6rem 6%; }
+    .section-title {
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      color: var(--cream);
+      position: relative;
+      display: inline-block;
+      width: 100%;
+    }
+    .section-title span { color: var(--gold-primary); }
+    .gold-accent {
+      width: 90px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--gold-primary), transparent);
+      margin: 0.5rem auto 2rem;
+    }
+
+    /* Menu Tabs */
+    .menu-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 3rem;
+    }
+    .tab-btn {
+      background: #1e1914;
+      border: 1px solid rgba(212,175,55,0.3);
+      padding: 0.7rem 1.8rem;
+      border-radius: 50px;
+      font-weight: 500;
+      color: #dcd0bd;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+    .tab-btn.active, .tab-btn:hover { background: var(--gold-primary); color: #0a0806; transform: translateY(-2px); }
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    .menu-card {
+      background: rgba(26, 22, 18, 0.7);
+      backdrop-filter: blur(5px);
+      border-radius: 28px;
+      padding: 1.8rem;
+      transition: all 0.4s ease;
+      border: 1px solid rgba(212,175,55,0.2);
+      position: relative;
+      overflow: hidden;
+    }
+    .menu-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(212,175,55,0.1), transparent);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+    .menu-card:hover::before { opacity: 1; }
+    .menu-card:hover { transform: translateY(-10px); border-color: var(--gold-primary); box-shadow: var(--shadow-gold); }
+    .menu-icon { font-size: 2.5rem; color: var(--gold-primary); margin-bottom: 1rem; }
+
+    /* Chef's Table Experience - NEW FEATURE */
+    .chef-experience {
+      background: linear-gradient(135deg, #1a1612, #0e0b08);
+      border-radius: 48px;
+      padding: 3rem;
+      margin-top: 2rem;
+      border: 1px solid rgba(212,175,55,0.3);
+      position: relative;
+      overflow: hidden;
+    }
+    .chef-experience::after {
+      content: '👨‍🍳';
+      position: absolute;
+      bottom: 20px;
+      right: 30px;
+      font-size: 100px;
+      opacity: 0.05;
+      pointer-events: none;
+    }
+    .experience-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .exp-card {
+      background: rgba(0,0,0,0.4);
+      border-radius: 28px;
+      padding: 2rem;
+      text-align: center;
+      transition: all 0.4s;
+      cursor: pointer;
+    }
+    .exp-card:hover { transform: translateY(-8px); background: rgba(212,175,55,0.1); }
+    .exp-card i { font-size: 3rem; color: var(--gold-primary); margin-bottom: 1rem; }
+    .exp-card h3 { font-size: 1.4rem; margin-bottom: 0.5rem; }
+    .exp-card p { color: #b9aa92; font-size: 0.9rem; }
+
+    /* Live Chef Counter Animation */
+    .live-chef {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2rem;
+      padding: 1rem;
+      background: rgba(212,175,55,0.1);
+      border-radius: 60px;
+      animation: pulseBg 2s infinite;
+    }
+    @keyframes pulseBg {
+      0%, 100% { background: rgba(212,175,55,0.05); }
+      50% { background: rgba(212,175,55,0.15); }
+    }
+    .live-chef i { font-size: 2rem; color: var(--gold-primary); animation: spin 4s linear infinite; }
+    @keyframes spin { 100% { transform: rotate(360deg); } }
+
+    /* Features Grid */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .feature-card {
+      background: rgba(26, 22, 18, 0.6);
+      border-radius: 28px;
+      padding: 2rem;
+      text-align: center;
+      border: 1px solid rgba(212,175,55,0.2);
+      transition: 0.3s;
+    }
+    .feature-card:hover { transform: translateY(-8px); border-color: var(--gold-primary); box-shadow: var(--shadow-gold); }
+    .feature-card i { font-size: 2.5rem; color: var(--gold-primary); margin-bottom: 1rem; }
+
+    /* Gallery */
+    .swiper { width: 100%; padding: 2rem 0; }
+    .swiper-slide { border-radius: 28px; overflow: hidden; }
+    .swiper-slide img { width: 100%; height: 320px; object-fit: cover; border-radius: 24px; transition: 0.5s; }
+    .swiper-slide:hover img { transform: scale(1.05); }
+
+    /* Contact Form */
+    .contact-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4rem;
+      background: rgba(20, 16, 12, 0.6);
+      border-radius: 48px;
+      padding: 3rem;
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(212,175,55,0.2);
+    }
+    .contact-info, .contact-form { flex: 1; }
+    .contact-info i { color: var(--gold-primary); width: 2rem; }
+    .input-group { margin-bottom: 1.2rem; }
+    .input-group input, .input-group textarea, .input-group select {
+      width: 100%;
+      background: #1e1915;
+      border: 1px solid #3a3228;
+      padding: 1rem;
+      border-radius: 20px;
+      color: white;
+      font-family: 'Poppins', sans-serif;
+      transition: 0.3s;
+    }
+    .input-group input:focus, .input-group textarea:focus, .input-group select:focus {
+      border-color: var(--gold-primary);
+      outline: none;
+      box-shadow: 0 0 10px rgba(212,175,55,0.3);
+    }
+    .submit-btn {
+      background: linear-gradient(135deg, var(--gold-primary), var(--gold-dark));
+      border: none;
+      padding: 0.9rem 2rem;
+      font-weight: bold;
+      border-radius: 40px;
+      cursor: pointer;
+      width: 100%;
+      transition: 0.3s;
+    }
+    .submit-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-gold); }
+    .download-section {
+      text-align: center;
+      background: linear-gradient(135deg, #12100c, #0e0b08);
+      border-radius: 48px;
+      margin: 0 6% 3rem 6%;
+      padding: 3rem;
+    }
+    .footer {
+      background: #050403;
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid rgba(212,175,55,0.2);
+    }
+    .whatsapp-float {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background: #25D366;
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      z-index: 99;
+      transition: 0.3s;
+      animation: bounce 2s infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    .whatsapp-float:hover { transform: scale(1.1); }
+    @media (max-width: 850px) {
+      .nav-links { display: none; }
+      .menu-toggle { display: block; }
+      .nav-links.mobile-open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background: #0a0806f2;
+        backdrop-filter: blur(20px);
+        padding: 2rem;
+        gap: 1.5rem;
+        text-align: center;
+      }
+      .hero h1 { font-size: 2.5rem; }
+      .hero-tagline { font-size: 1rem; }
+      .section-title { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="navbar" id="navbar">
+  <div class="logo-area">
+    <!-- <div class="logo-img"><i class="fas fa-crown"></i></div> -->
+     <div class="logo-img">
+    <img src="image.png" alt="Satyavathi Logo" style="width: 55px; height: 100px; ; object-fit: cover; margin-top: 10px;">
+</div>
+    <div class="logo-text">
+      <h1>SATYAVATHI</h1>
+      <p>CATERINGS • WE PLAN IN YOUR BUDGET</p>
+    </div>
+  </div>
+  <div class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></div>
+  <div class="nav-links" id="navLinks">
+    <a href="#home" class="nav-link active">HOME</a>
+    <a href="#menu" class="nav-link">MENU</a>
+    <a href="#chefExperience" class="nav-link">CHEF'S TABLE</a>
+    <a href="#gallery" class="nav-link">GALLERY</a>
+    <a href="#contact" class="nav-link">CONTACT</a>
+    <button class="download-menu-btn" id="downloadPdfBtn"><i class="fas fa-download"></i> Menu PDF</button>
+  </div>
+</div>
+
+<!-- Hero Slider -->
+<section id="home" class="hero">
+  <div class="hero-slider" id="heroSlider">
+    <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1555244162-803834f70033?q=80&w=2070');"></div>
+    <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=2070');"></div>
+    <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1600891964599-f61ba0e24092?q=80&w=2070');"></div>
+    <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1551183053-bf91a1d81141?q=80&w=2070');"></div>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-inner" data-aos="fade-up">
+      <div class="hero-badge"><i class="fas fa-star-of-life"></i> EST. 2010 • PREMIUM CATERING</div>
+      <h1>SATYAVATHI</h1>
+      <div class="hero-tagline">"Where Every Bite Tells a Story of Royalty & Tradition"</div>
+      <p>Authentic South Indian & Indo-Asian flavors crafted with passion. We turn your celebrations into unforgettable feasts.</p>
+      <div class="btn-group">
+        <button class="btn-primary" onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})">EXPLORE MENU</button>
+        <button class="btn-outline" id="heroDownloadBtn"><i class="fas fa-file-pdf"></i> Download Menu</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Stats with Counter Animation -->
+<div class="stats" data-aos="fade-up">
+  <div class="stat-item"><h2 class="counter" data-target="5000">0</h2><p>Happy Events</p></div>
+  <div class="stat-item"><h2 class="counter" data-target="250">0</h2><p>Signature Dishes</p></div>
+  <div class="stat-item"><h2 class="counter" data-target="100">0</h2><p>Budget Planning</p><p style="font-size:0.8rem;">% Satisfaction</p></div>
+  <div class="stat-item"><h2 class="counter" data-target="15">0</h2><p>Years of Legacy</p></div>
+</div>
+
+<!-- MENU Section -->
+<section id="menu">
+  <div class="section-title" data-aos="fade-up">Exquisite <span>Menu Selections</span></div>
+  <div class="gold-accent"></div>
+  <div class="section-subtitle" data-aos="fade-up">Crafted from generations-old recipes with the finest ingredients.</div>
+  <div class="menu-tabs" id="menuTabs"></div>
+  <div id="menuItemsContainer" class="menu-grid"></div>
+</section>
+
+<!-- CHEF'S TABLE EXPERIENCE - Premium New Feature -->
+<section id="chefExperience">
+  <div class="section-title" data-aos="fade-up"><span>👨‍🍳 Chef's Table</span> Experience</div>
+  <div class="gold-accent"></div>
+  <div class="chef-experience" data-aos="fade-up">
+    <div class="experience-grid">
+      <div class="exp-card">
+        <i class="fas fa-microphone-alt"></i>
+        <h3>Live Demo Counter</h3>
+        <p>Watch our master chefs prepare signature dishes live at your event</p>
+      </div>
+      <div class="exp-card">
+        <i class="fas fa-trophy"></i>
+        <h3>Award-Winning Recipes</h3>
+        <p>Decades of culinary excellence recognized nationally</p>
+      </div>
+      <div class="exp-card">
+        <i class="fas fa-wine-glass-alt"></i>
+        <h3>Plated Fine Dining</h3>
+        <p>Elegant plating and royal presentation for premium events</p>
+      </div>
+      <div class="exp-card">
+        <i class="fas fa-calendar-alt"></i>
+        <h3>Personalized Menu Curation</h3>
+        <p>Our chef designs a custom menu based on your taste and theme</p>
+      </div>
+    </div>
+    <div class="live-chef">
+      <i class="fas fa-utensil-spoon"></i>
+      <span><strong>🔥 Live Kitchen Counters Available</strong> — Interactive food stations for weddings & corporate galas</span>
+      <i class="fas fa-fire"></i>
+    </div>
+  </div>
+</section>
+
+<!-- Why Choose Us -->
+<section id="features">
+  <div class="section-title" data-aos="fade-up">Why <span>Choose Us</span></div>
+  <div class="gold-accent"></div>
+  <div class="features-grid" data-aos="fade-up">
+    <div class="feature-card"><i class="fas fa-hand-holding-heart"></i><h3>Budget Friendly</h3><p>We plan in your budget without compromising quality.</p></div>
+    <div class="feature-card"><i class="fas fa-chef-hat"></i><h3>Master Chefs</h3><p>Experienced chefs from authentic culinary backgrounds.</p></div>
+    <div class="feature-card"><i class="fas fa-truck"></i><h3>Pan India Service</h3><p>We cater across India with premium logistics.</p></div>
+    <div class="feature-card"><i class="fas fa-leaf"></i><h3>Hygiene First</h3><p>ISO standard kitchens & fresh ingredients.</p></div>
+  </div>
+</section>
+
+<!-- Gallery -->
+<section id="gallery">
+  <div class="section-title" data-aos="fade-up">Visual <span>Story</span></div>
+  <div class="gold-accent"></div>
+  <div class="swiper mySwiper" data-aos="zoom-in">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?w=800" alt="Catering"></div>
+      <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=800" alt="Biryani"></div>
+      <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1574484284003-9d8ba8de18a3?w=800" alt="Sweets"></div>
+      <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=800" alt="Live Counter"></div>
+      <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800" alt="Wedding"></div>
+    </div>
+    <div class="swiper-pagination"></div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact">
+  <div class="section-title" data-aos="fade-up">Let's Curate Your <span>Dream Feast</span></div>
+  <div class="gold-accent"></div>
+  <div class="contact-grid" data-aos="fade-up">
+    <div class="contact-info">
+      <h3><i class="fas fa-map-marker-alt"></i> Address</h3>
+      <p>48-11/3-1/4, Koneru Rama Krishnaiah St, Currency Nagar 6th, Vijayawada</p><br>
+      <h3><i class="fas fa-phone-alt"></i> Call / WhatsApp</h3>
+      <p>+91 90302 71841</p>
+      <h3><i class="fas fa-envelope"></i> Email</h3>
+      <p>Sparkevents90@gmail.com</p>
+      <div style="margin-top: 2rem;"><i class="fab fa-instagram" style="font-size: 2rem; margin-right: 1rem; cursor: pointer;"></i><i class="fab fa-facebook" style="font-size: 2rem; cursor: pointer;"></i></div>
+    </div>
+    <div class="contact-form">
+      <h3>Request a personalized quote</h3>
+      <form id="whatsappContactForm">
+        <div class="input-group"><input type="text" placeholder="Your Name" required id="waName"></div>
+        <div class="input-group"><input type="email" placeholder="Email Address" id="waEmail"></div>
+        <div class="input-group"><input type="tel" placeholder="Phone Number" required id="waPhone"></div>
+        <div class="input-group">
+          <select id="waCategory" required>
+            <option value="">Select Event Category</option>
+            <option value="Wedding">Wedding Catering</option>
+            <option value="Corporate Event">Corporate Event</option>
+            <option value="Birthday Party">Birthday Party</option>
+            <option value="Religious Ceremony">Religious Ceremony</option>
+          </select>
+        </div>
+        <div class="input-group"><textarea rows="2" placeholder="Guest count, budget, special requests" id="waMessage"></textarea></div>
+        <button type="submit" class="submit-btn"><i class="fab fa-whatsapp"></i> Send via WhatsApp</button>
+      </form>
+      <p id="formWhatsFeedback" style="margin-top: 10px; font-size: 0.8rem;"></p>
+    </div>
+  </div>
+</section>
+
+<div class="download-section" data-aos="zoom-in">
+  <i class="fas fa-file-pdf" style="font-size: 3rem; color: var(--gold-primary); margin-bottom: 1rem;"></i>
+  <h3>Complete Catering Menu PDF</h3>
+  <p>Download our full menu card featuring 150+ authentic dishes.</p>
+  <button id="premiumDownloadBtn" class="btn-primary"><i class="fas fa-download"></i> Download Menu (PDF)</button>
+</div>
+
+<footer class="footer">
+  <p>© 2025 SATYAVATHI CATERINGS — "Where Every Bite Tells a Story of Royalty & Tradition"</p>
+  <p style="margin-top: 0.5rem; font-size: 0.75rem;">WE PLAN IN YOUR BUDGET | Premium Catering Services Since 2010</p>
+</footer>
+<a href="https://wa.me/919030271841" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+  // FULL MENU DATA
+  const fullMenu = {
+    "Starters (Veg)": ["Gobi Manchurian", "Chilli Paneer", "Mirchi Bajji", "Punugulu", "Masala Vada", "Onion Pakodi", "Baby Corn 65", "Alu 65", "Mushroom Tikka", "Gare (Medu Vada)"],
+    "Starters (Non-Veg)": ["Chicken 65", "Apollo Fish", "Prawns 65", "Mutton Seekh", "Chicken Lollipop", "Egg Pakoda", "Chicken Majestic", "Pepper Chicken"],
+    "Main Course (Veg)": ["Gutti Vankaya", "Paneer Butter Masala", "Kadai Mushroom", "Dondakaya Fry", "Gongura Curry", "Navratna Korma", "Veg Kolhapuri", "Malai Kofta"],
+    "Main Course (Non-Veg)": ["Natu Kodi Iguru", "Mutton Rogan Josh", "Prawns Curry", "Chicken Chettinad", "Fish Curry", "Egg Curry", "Kodi Kura", "Royyala Vepudu"],
+    "Rice & Biryani": ["Hyderabadi Veg Biryani", "Chicken Dum Biryani", "Mutton Biryani", "Prawns Biryani", "Ghee Rice", "Curd Rice", "Tomato Rice", "Bisi Bele Bath", "Puliyogare"],
+    "Breads": ["Butter Naan", "Garlic Naan", "Tandoori Roti", "Rumali Roti", "Alu Paratha", "Laccha Paratha", "Poori"],
+    "Desserts": ["Gulab Jamun", "Rasmalai", "Jalebi", "Double Ka Meetha", "Carrot Halwa", "Badam Kheer", "Ice Creams", "Rasgulla"]
+  };
+  
+  let activeCat = Object.keys(fullMenu)[0];
+  
+  function renderTabs() {
+    const container = document.getElementById('menuTabs');
+    container.innerHTML = '';
+    Object.keys(fullMenu).forEach(cat => {
+      const btn = document.createElement('button');
+      btn.className = `tab-btn ${activeCat === cat ? 'active' : ''}`;
+      btn.innerText = cat;
+      btn.onclick = () => { activeCat = cat; renderTabs(); renderMenu(); };
+      container.appendChild(btn);
+    });
+  }
+  
+  function renderMenu() {
+    const items = fullMenu[activeCat];
+    const grid = document.getElementById('menuItemsContainer');
+    grid.innerHTML = '';
+    items.forEach(item => {
+      const card = document.createElement('div');
+      card.className = 'menu-card';
+      let icon = '<i class="fas fa-utensils menu-icon"></i>';
+      if (activeCat.includes('Non-Veg')) icon = '<i class="fas fa-drumstick-bite menu-icon"></i>';
+      if (activeCat.includes('Desserts')) icon = '<i class="fas fa-cake-candles menu-icon"></i>';
+      if (activeCat.includes('Rice')) icon = '<i class="fas fa-bowl-food menu-icon"></i>';
+      card.innerHTML = `${icon}<h3>${item}</h3><p>Chef's signature preparation</p><div><span style="background:#d4af371a; padding:0.2rem 1rem; border-radius:30px;">✦ Premium</span></div>`;
+      grid.appendChild(card);
+    });
+  }
+  
+  // Counter Animation
+  function animateCounters() {
+    const counters = document.querySelectorAll('.counter');
+    counters.forEach(counter => {
+      const target = parseInt(counter.getAttribute('data-target'));
+      let current = 0;
+      const increment = target / 50;
+      const updateCounter = () => {
+        current += increment;
+        if (current < target) {
+          counter.innerText = Math.ceil(current);
+          requestAnimationFrame(updateCounter);
+        } else {
+          counter.innerText = target;
+        }
+      };
+      updateCounter();
+    });
+  }
+  
+  // PDF Generation
+  function generateAndDownloadPDF() {
+    const pdfContent = document.createElement('div');
+    pdfContent.style.fontFamily = 'Poppins, sans-serif';
+    pdfContent.style.padding = '30px';
+    pdfContent.style.backgroundColor = '#fffaf5';
+    pdfContent.style.color = '#2c2418';
+    pdfContent.innerHTML = `<div style="text-align:center; border-bottom:2px solid #d4af37; padding-bottom:20px;"><div style="display:flex; align-items:center; justify-content:center; gap:15px;"><div style="background:#d4af37; width:60px; height:60px; border-radius:50%; display:flex; align-items:center; justify-content:center;"><i class="fas fa-crown"></i></div><div><h1 style="font-family:Playfair Display;">SATYAVATHI CATERINGS</h1><p>WE PLAN IN YOUR BUDGET</p></div></div><p>48-11/3-1/4, Koneru Rama Krishnaiah St | +91 90302 71841</p><p style="font-style:italic;">"Where Every Bite Tells a Story of Royalty & Tradition"</p></div><h2 style="text-align:center; color:#b8901d;">✦ PREMIUM MENU CARD ✦</h2>`;
+    for (const [category, items] of Object.entries(fullMenu)) {
+      pdfContent.innerHTML += `<div style="margin-top:25px;"><h3 style="background:#d4af37; display:inline-block; padding:5px 20px; border-radius:30px;">${category}</h3><div style="display:flex; flex-wrap:wrap; gap:12px; margin-top:12px;">${items.map(item => `<span style="background:#f3ede5; padding:6px 14px; border-radius:40px;">${item}</span>`).join('')}</div></div>`;
+    }
+    document.body.appendChild(pdfContent);
+    html2pdf().set({ margin: 0.5, filename: 'Satyavathi_Caterings_Menu.pdf', image: { type: 'jpeg', quality: 0.98 }, html2canvas: { scale: 2 }, jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' } }).from(pdfContent).save().then(() => document.body.removeChild(pdfContent));
+  }
+  
+  // WhatsApp Integration
+  function sendToWhatsApp(event) {
+    event.preventDefault();
+    const name = document.getElementById('waName').value;
+    const email = document.getElementById('waEmail').value;
+    const phone = document.getElementById('waPhone').value;
+    const category = document.getElementById('waCategory').value;
+    const message = document.getElementById('waMessage').value;
+    if (!name || !phone || !category) {
+      document.getElementById('formWhatsFeedback').innerHTML = '⚠️ Please fill Name, Phone, and Event Category.';
+      return;
+    }
+    let whatsappMsg = `*New Catering Inquiry*%0A%0A*Name:* ${name}%0A*Email:* ${email || 'Not provided'}%0A*Phone:* ${phone}%0A*Event Category:* ${category}%0A*Details:* ${message || 'None'}%0A%0AThank you! Please share menu & package details.`;
+    window.open(`https://wa.me/919030271841?text=${whatsappMsg}`, '_blank');
+    document.getElementById('formWhatsFeedback').innerHTML = '✅ Redirecting to WhatsApp...';
+    setTimeout(() => { document.getElementById('whatsappContactForm').reset(); document.getElementById('formWhatsFeedback').innerHTML = ''; }, 2000);
+  }
+  
+  // Hero Slider
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.hero-slider .slide');
+  setInterval(() => { slides[currentSlide].classList.remove('active'); currentSlide = (currentSlide + 1) % slides.length; slides[currentSlide].classList.add('active'); }, 5000);
+  
+  // Initialize
+  AOS.init({ duration: 800, once: true, offset: 80 });
+  renderTabs(); renderMenu();
+  setTimeout(animateCounters, 500);
+  
+  new Swiper('.mySwiper', { loop: true, autoplay: { delay: 3000 }, pagination: { el: '.swiper-pagination', clickable: true }, navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' }, slidesPerView: 1, breakpoints: { 768: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } } });
+  
+  // Mobile Menu
+  const toggleBtn = document.getElementById('menuToggle');
+  const navLinksDiv = document.getElementById('navLinks');
+  toggleBtn.addEventListener('click', () => navLinksDiv.classList.toggle('mobile-open'));
+  document.querySelectorAll('.nav-link').forEach(l => l.addEventListener('click', () => navLinksDiv.classList.remove('mobile-open')));
+  
+  // PDF Buttons
+  document.getElementById('downloadPdfBtn')?.addEventListener('click', generateAndDownloadPDF);
+  document.getElementById('premiumDownloadBtn')?.addEventListener('click', generateAndDownloadPDF);
+  document.getElementById('heroDownloadBtn')?.addEventListener('click', generateAndDownloadPDF);
+  
+  // WhatsApp Form
+  document.getElementById('whatsappContactForm').addEventListener('submit', sendToWhatsApp);
+</script>
+</body>
+</html>
