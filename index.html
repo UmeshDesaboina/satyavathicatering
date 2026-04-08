@@ -820,10 +820,21 @@
   document.querySelectorAll('.nav-link').forEach(l => l.addEventListener('click', () => navLinksDiv.classList.remove('mobile-open')));
   
   // PDF Buttons
-  document.getElementById('downloadPdfBtn')?.addEventListener('click', generateAndDownloadPDF);
-  document.getElementById('premiumDownloadBtn')?.addEventListener('click', generateAndDownloadPDF);
-  document.getElementById('heroDownloadBtn')?.addEventListener('click', generateAndDownloadPDF);
+//   document.getElementById('downloadPdfBtn')?.addEventListener('click', generateAndDownloadPDF);
+//   document.getElementById('premiumDownloadBtn')?.addEventListener('click', generateAndDownloadPDF);
+//   document.getElementById('heroDownloadBtn')?.addEventListener('click', generateAndDownloadPDF);
   
+function downloadMenuPDF() {
+  const link = document.createElement('a');
+  link.href = 'menu.pdf'; // your PDF file name
+  link.download = 'Satyavathi_Menu.pdf';
+  link.click();
+}
+
+// PDF Buttons
+document.getElementById('downloadPdfBtn')?.addEventListener('click', downloadMenuPDF);
+document.getElementById('premiumDownloadBtn')?.addEventListener('click', downloadMenuPDF);
+document.getElementById('heroDownloadBtn')?.addEventListener('click', downloadMenuPDF);
   // WhatsApp Form
   document.getElementById('whatsappContactForm').addEventListener('submit', sendToWhatsApp);
 </script>
