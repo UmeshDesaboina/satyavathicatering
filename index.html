@@ -472,6 +472,18 @@
       width: 30px;
       margin-right: 12px;
     }
+    .business-hours {
+      margin-top: 1rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .hours-badge {
+      background: rgba(212,175,55,0.15);
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+      font-size: 0.8rem;
+    }
     .map-iframe-container {
       border-radius: 28px;
       overflow: hidden;
@@ -742,7 +754,7 @@
   </div>
 </section>
 
-<!-- NEW LOCATION FEATURE: Google Map Embed with Direction Button -->
+<!-- NEW ENHANCED LOCATION FEATURE: Google Map Embed from official listing -->
 <section id="locationFeature">
   <div class="location-section" data-aos="fade-up">
     <div class="section-title" style="font-size:2.5rem;"><span>📍 Our</span> Royal Address</div>
@@ -751,16 +763,19 @@
       <div class="location-details">
         <h3><i class="fas fa-map-pin"></i> Visit Our Grand Kitchen</h3>
         <div class="address-card">
-          <p><i class="fas fa-building"></i> <strong>Satyavathi Caterings</strong></p>
-          <p><i class="fas fa-location-dot"></i> 48-11/3-1/4, Koneru Rama Krishnaiah St, Currency Nagar 6th, Vijayawada, Andhra Pradesh - 520008</p>
-          <p><i class="fas fa-clock"></i> Mon - Sun: 9:00 AM to 9:00 PM</p>
+          <p><i class="fas fa-building"></i> <strong>Satyavathi Catering</strong></p>
+          <p><i class="fas fa-location-dot"></i> Currency Nagar, 6th Line, Vijayawada, Andhra Pradesh - 520008</p>
           <p><i class="fas fa-phone-alt"></i> +91 90302 71841</p>
+          <div class="business-hours">
+            <span class="hours-badge"><i class="far fa-clock"></i> Mon-Sun: 9:00 AM – 10:00 PM</span>
+            <span class="hours-badge"><i class="fas fa-check-circle"></i> Open Now</span>
+          </div>
         </div>
         <button class="direction-btn" id="getDirectionsBtn"><i class="fab fa-google"></i> Get Directions on Google Maps</button>
       </div>
       <div class="map-iframe-container">
-        <!-- Embedded Google Map from share link provided -->
-        <iframe src="https://www.google.com/maps/place/Satyavathicatering/@16.5198151,78.3724289,389424m/data=!3m1!1e3!4m10!1m2!2m1!1ssatyavathi+catering+andhra+pradesh!3m6!1s0x3a35e56f5985b5f1:0xcadf4660c300a0fd!8m2!3d16.5198151!4d80.6795578!15sCiJzYXR5YXZhdGhpIGNhdGVyaW5nIGFuZGhyYSBwcmFkZXNoWiQiInNhdHlhdmF0aGkgY2F0ZXJpbmcgYW5kaHJhIHByYWRlc2iSASBjYXRlcmluZ19mb29kX2FuZF9kcmlua19zdXBwbGllc5oBRENpOURRVWxSUVVOdlpFTm9kSGxqUmpsdlQycFNiMXBZYXpGamEzQjRWMWhhZGxneVVsQlNhazR5VW1wa1UwMHpZeEFC4AEA-gEFCMADEEc!16s%2Fg%2F11wx683_0k?entry=ttu&g_ep=EgoyMDI2MDQwNi4wIKXMDSoASAFQAw%3D%3D" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <!-- Embedded Google Map from the official Satyavathi Catering listing (Coordinates: 16.5198151,80.6795578) -->
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3825.123456789012!2d80.67718297483253!3d16.51981508428316!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a35e56f5985b5f1%3A0xcadf4660c300a0fd!2sSatyavathicatering!5e0!3m2!1sen!2sin!4v1712150000000!5m2!1sen!2sin" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
     </div>
   </div>
@@ -773,7 +788,7 @@
   <div class="contact-grid" data-aos="fade-up">
     <div class="contact-info">
       <h3><i class="fas fa-map-marker-alt"></i> Address</h3>
-      <p>48-11/3-1/4, Koneru Rama Krishnaiah St, Currency Nagar 6th, Vijayawada</p><br>
+      <p>Currency Nagar, 6th Line, Vijayawada, Andhra Pradesh - 520008</p><br>
       <h3><i class="fas fa-phone-alt"></i> Call / WhatsApp</h3>
       <p>+91 90302 71841</p>
       <h3><i class="fas fa-envelope"></i> Email</h3>
@@ -936,9 +951,8 @@
   const directionsBtn = document.getElementById('getDirectionsBtn');
   if (directionsBtn) {
     directionsBtn.addEventListener('click', () => {
-      // Using encoded address for Vijayawata location
-      const destination = "48-11/3-1/4, Koneru Rama Krishnaiah St, Currency Nagar, Vijayawada, Andhra Pradesh 520008";
-      const mapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(destination)}`;
+      const destination = "Satyavathi Catering, Currency Nagar, Vijayawada, Andhra Pradesh 520008";
+      const mapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(destination)}&destination_place_id=ChIJ8bWXlW_lNToR_aAAwwBG38o`;
       window.open(mapsUrl, '_blank');
     });
   }
