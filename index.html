@@ -131,22 +131,8 @@
     }
     .download-menu-btn:hover { background: var(--gold-primary); color: #0a0806; transform: scale(1.05); }
     .menu-toggle { display: none; font-size: 1.8rem; color: var(--gold-primary); cursor: pointer; }
-    
-    /* Telugu Toggle Button */
-    .lang-toggle {
-      background: linear-gradient(135deg, var(--gold-primary), var(--gold-dark));
-      border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 40px;
-      font-weight: 600;
-      cursor: pointer;
-      color: #0a0806;
-      transition: 0.3s;
-      font-size: 0.8rem;
-    }
-    .lang-toggle:hover { transform: scale(1.05); box-shadow: var(--shadow-gold); }
 
-    /* Hero Slider */
+    /* Hero Slider with Parallax */
     .hero {
       min-height: 100vh;
       position: relative;
@@ -277,7 +263,7 @@
     }
     .btn-outline:hover { background: var(--gold-primary); color: black; transform: translateY(-4px); }
 
-    /* Stats */
+    /* Stats with Counters */
     .stats {
       background: linear-gradient(135deg, #12100c, #1a1612);
       display: flex;
@@ -292,6 +278,7 @@
     .stat-item h2 { font-size: 3rem; color: var(--gold-primary); font-weight: 800; }
     .stat-item p { letter-spacing: 1px; }
 
+    /* Sections */
     section { padding: 6rem 6%; }
     .section-title {
       text-align: center;
@@ -312,7 +299,7 @@
       margin: 0.5rem auto 2rem;
     }
 
-    /* Interactive Digital Menu */
+    /* Menu Tabs */
     .menu-tabs {
       display: flex;
       flex-wrap: wrap;
@@ -343,130 +330,356 @@
       padding: 1.8rem;
       transition: all 0.4s ease;
       border: 1px solid rgba(212,175,55,0.2);
-      cursor: pointer;
-    }
-    .menu-card:hover { transform: translateY(-10px); border-color: var(--gold-primary); box-shadow: var(--shadow-gold); }
-    .menu-icon { font-size: 2.5rem; color: var(--gold-primary); margin-bottom: 1rem; }
-    .menu-price-tag { display: inline-block; background: var(--gold-primary); color: #0a0806; padding: 0.2rem 1rem; border-radius: 30px; font-size: 0.8rem; margin-top: 0.8rem; font-weight: bold; }
-
-    /* Catering Packages Section */
-    .packages-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-    .package-card {
-      background: rgba(26, 22, 18, 0.7);
-      border-radius: 32px;
-      padding: 2rem;
-      text-align: center;
-      border: 1px solid rgba(212,175,55,0.3);
-      transition: 0.4s;
       position: relative;
       overflow: hidden;
     }
-    .package-card:hover { transform: translateY(-8px); border-color: var(--gold-primary); box-shadow: var(--shadow-gold); }
-    .package-card .price { font-size: 2rem; color: var(--gold-primary); font-weight: 800; margin: 1rem 0; }
-    .package-card ul { list-style: none; margin: 1rem 0; }
-    .package-card li { padding: 0.3rem 0; color: #dcd0bd; }
-    .package-badge { background: var(--gold-primary); color: #0a0806; display: inline-block; padding: 0.3rem 1.5rem; border-radius: 40px; font-weight: bold; margin-bottom: 1rem; }
+    .menu-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(212,175,55,0.1), transparent);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+    .menu-card:hover::before { opacity: 1; }
+    .menu-card:hover { transform: translateY(-10px); border-color: var(--gold-primary); box-shadow: var(--shadow-gold); }
+    .menu-icon { font-size: 2.5rem; color: var(--gold-primary); margin-bottom: 1rem; }
 
-    /* Chef's Table */
+    /* Chef's Table Experience - NEW FEATURE */
     .chef-experience {
       background: linear-gradient(135deg, #1a1612, #0e0b08);
       border-radius: 48px;
       padding: 3rem;
       margin-top: 2rem;
       border: 1px solid rgba(212,175,55,0.3);
+      position: relative;
+      overflow: hidden;
+    }
+    .chef-experience::after {
+      content: '👨‍🍳';
+      position: absolute;
+      bottom: 20px;
+      right: 30px;
+      font-size: 100px;
+      opacity: 0.05;
+      pointer-events: none;
     }
     .experience-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 2rem;
+      margin-top: 2rem;
     }
-    .exp-card { background: rgba(0,0,0,0.4); border-radius: 28px; padding: 2rem; text-align: center; transition: 0.4s; cursor: pointer; }
+    .exp-card {
+      background: rgba(0,0,0,0.4);
+      border-radius: 28px;
+      padding: 2rem;
+      text-align: center;
+      transition: all 0.4s;
+      cursor: pointer;
+    }
     .exp-card:hover { transform: translateY(-8px); background: rgba(212,175,55,0.1); }
     .exp-card i { font-size: 3rem; color: var(--gold-primary); margin-bottom: 1rem; }
-    .live-chef { display: flex; align-items: center; justify-content: center; gap: 1rem; margin-top: 2rem; padding: 1rem; background: rgba(212,175,55,0.1); border-radius: 60px; animation: pulseBg 2s infinite; }
-    @keyframes pulseBg { 0%,100% { background: rgba(212,175,55,0.05); } 50% { background: rgba(212,175,55,0.15); } }
+    .exp-card h3 { font-size: 1.4rem; margin-bottom: 0.5rem; }
+    .exp-card p { color: #b9aa92; font-size: 0.9rem; }
+
+    /* Live Chef Counter Animation */
+    .live-chef {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2rem;
+      padding: 1rem;
+      background: rgba(212,175,55,0.1);
+      border-radius: 60px;
+      animation: pulseBg 2s infinite;
+    }
+    @keyframes pulseBg {
+      0%, 100% { background: rgba(212,175,55,0.05); }
+      50% { background: rgba(212,175,55,0.15); }
+    }
+    .live-chef i { font-size: 2rem; color: var(--gold-primary); animation: spin 4s linear infinite; }
+    @keyframes spin { 100% { transform: rotate(360deg); } }
 
     /* Features Grid */
     .features-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 2rem;
+      margin-top: 2rem;
     }
-    .feature-card { background: rgba(26, 22, 18, 0.6); border-radius: 28px; padding: 2rem; text-align: center; border: 1px solid rgba(212,175,55,0.2); transition: 0.3s; }
-    .feature-card:hover { transform: translateY(-8px); border-color: var(--gold-primary); }
+    .feature-card {
+      background: rgba(26, 22, 18, 0.6);
+      border-radius: 28px;
+      padding: 2rem;
+      text-align: center;
+      border: 1px solid rgba(212,175,55,0.2);
+      transition: 0.3s;
+    }
+    .feature-card:hover { transform: translateY(-8px); border-color: var(--gold-primary); box-shadow: var(--shadow-gold); }
     .feature-card i { font-size: 2.5rem; color: var(--gold-primary); margin-bottom: 1rem; }
 
-    /* Gallery Swiper */
+    /* Gallery */
     .swiper { width: 100%; padding: 2rem 0; }
+    .swiper-slide { border-radius: 28px; overflow: hidden; }
     .swiper-slide img { width: 100%; height: 320px; object-fit: cover; border-radius: 24px; transition: 0.5s; }
     .swiper-slide:hover img { transform: scale(1.05); }
 
-    /* Location Section */
+    /* Enhanced Location & Map Section */
     .location-section {
       background: linear-gradient(135deg, #12100c, #0e0b08);
       border-radius: 48px;
       margin: 2rem 6% 3rem 6%;
       padding: 2rem;
+      border: 1px solid rgba(212,175,55,0.3);
+      transition: all 0.4s ease;
     }
-    .location-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 2rem; align-items: center; }
-    .address-card { background: rgba(0,0,0,0.4); border-radius: 28px; padding: 1.5rem; border-left: 4px solid var(--gold-primary); }
-    .map-iframe-container { border-radius: 28px; overflow: hidden; border: 2px solid rgba(212,175,55,0.3); }
-    .map-iframe-container iframe { width: 100%; height: 320px; border: 0; }
-    .direction-btn { background: transparent; border: 1.5px solid var(--gold-primary); padding: 0.7rem 1.8rem; border-radius: 40px; color: var(--gold-primary); font-weight: 600; cursor: pointer; transition: 0.3s; }
-    .direction-btn:hover { background: var(--gold-primary); color: #0a0806; }
+    .location-section:hover {
+      box-shadow: var(--shadow-gold);
+      border-color: var(--gold-primary);
+    }
+    .location-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 2rem;
+      align-items: center;
+    }
+    .location-details {
+      padding-right: 1rem;
+    }
+    .location-details h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: var(--gold-primary);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .address-card {
+      background: rgba(0,0,0,0.4);
+      border-radius: 28px;
+      padding: 1.5rem;
+      margin: 1rem 0;
+      border-left: 4px solid var(--gold-primary);
+    }
+    .address-card i {
+      color: var(--gold-primary);
+      width: 30px;
+      margin-right: 12px;
+    }
+    .business-hours {
+      margin-top: 1rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .hours-badge {
+      background: rgba(212,175,55,0.15);
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+      font-size: 0.8rem;
+    }
+    .map-iframe-container {
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 20px 35px -12px rgba(0,0,0,0.5);
+      border: 2px solid rgba(212,175,55,0.3);
+      transition: 0.3s;
+    }
+    .map-iframe-container iframe {
+      width: 100%;
+      height: 320px;
+      border: 0;
+      display: block;
+    }
+    .direction-btn {
+      background: transparent;
+      border: 1.5px solid var(--gold-primary);
+      padding: 0.7rem 1.8rem;
+      border-radius: 40px;
+      color: var(--gold-primary);
+      font-weight: 600;
+      margin-top: 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+    .direction-btn:hover {
+      background: var(--gold-primary);
+      color: #0a0806;
+      transform: translateX(5px);
+    }
+    @media (max-width: 850px) {
+      .location-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      .location-details {
+        text-align: center;
+      }
+      .address-card {
+        text-align: left;
+      }
+    }
 
     /* Contact Form */
-    .contact-grid { display: flex; flex-wrap: wrap; gap: 4rem; background: rgba(20, 16, 12, 0.6); border-radius: 48px; padding: 3rem; backdrop-filter: blur(8px); }
+    .contact-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4rem;
+      background: rgba(20, 16, 12, 0.6);
+      border-radius: 48px;
+      padding: 3rem;
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(212,175,55,0.2);
+    }
     .contact-info, .contact-form { flex: 1; }
+    .contact-info i { color: var(--gold-primary); width: 2rem; }
     .input-group { margin-bottom: 1.2rem; }
-    .input-group input, .input-group textarea, .input-group select { width: 100%; background: #1e1915; border: 1px solid #3a3228; padding: 1rem; border-radius: 20px; color: white; }
-    .input-group input:focus, .input-group textarea:focus { border-color: var(--gold-primary); outline: none; }
-    .submit-btn { background: linear-gradient(135deg, var(--gold-primary), var(--gold-dark)); border: none; padding: 0.9rem 2rem; font-weight: bold; border-radius: 40px; cursor: pointer; width: 100%; }
-    .download-section { text-align: center; background: linear-gradient(135deg, #12100c, #0e0b08); border-radius: 48px; margin: 0 6% 3rem 6%; padding: 3rem; }
-    .shorts-section { background: linear-gradient(135deg, #0e0b08, #12100c); border-radius: 48px; margin: 2rem 6% 3rem 6%; padding: 2rem; }
-    .shorts-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
-    .video-wrapper { position: relative; padding-bottom: 177%; height: 0; overflow: hidden; border-radius: 24px; }
-    .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; border-radius: 24px; }
-    .short-caption { padding: 0.8rem; text-align: center; color: var(--gold-light); }
-
-    /* Scroll to Top Button */
-    .scroll-top {
+    .input-group input, .input-group textarea, .input-group select {
+      width: 100%;
+      background: #1e1915;
+      border: 1px solid #3a3228;
+      padding: 1rem;
+      border-radius: 20px;
+      color: white;
+      font-family: 'Poppins', sans-serif;
+      transition: 0.3s;
+    }
+    .input-group input:focus, .input-group textarea:focus, .input-group select:focus {
+      border-color: var(--gold-primary);
+      outline: none;
+      box-shadow: 0 0 10px rgba(212,175,55,0.3);
+    }
+    .submit-btn {
+      background: linear-gradient(135deg, var(--gold-primary), var(--gold-dark));
+      border: none;
+      padding: 0.9rem 2rem;
+      font-weight: bold;
+      border-radius: 40px;
+      cursor: pointer;
+      width: 100%;
+      transition: 0.3s;
+    }
+    .submit-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-gold); }
+    .download-section {
+      text-align: center;
+      background: linear-gradient(135deg, #12100c, #0e0b08);
+      border-radius: 48px;
+      margin: 0 6% 3rem 6%;
+      padding: 3rem;
+    }
+    
+    /* YouTube Shorts Section */
+    .shorts-section {
+      background: linear-gradient(135deg, #0e0b08, #12100c);
+      border-radius: 48px;
+      margin: 2rem 6% 3rem 6%;
+      padding: 2rem;
+      border: 1px solid rgba(212,175,55,0.3);
+    }
+    .shorts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.8rem;
+      margin-top: 2rem;
+    }
+    .short-card {
+      background: rgba(0,0,0,0.5);
+      border-radius: 28px;
+      overflow: hidden;
+      transition: all 0.4s ease;
+      border: 1px solid rgba(212,175,55,0.2);
+      position: relative;
+    }
+    .short-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--gold-primary);
+      box-shadow: var(--shadow-gold);
+    }
+    .video-wrapper {
+      position: relative;
+      padding-bottom: 177%; /* 9:16 aspect ratio for shorts */
+      height: 0;
+      overflow: hidden;
+    }
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+    .short-caption {
+      padding: 1rem;
+      text-align: center;
+      background: rgba(0,0,0,0.6);
+      font-weight: 500;
+      color: var(--gold-light);
+    }
+    @media (max-width: 640px) {
+      .shorts-grid {
+        grid-template-columns: 1fr;
+      }
+      .video-wrapper {
+        padding-bottom: 177%;
+      }
+    }
+    
+    .footer {
+      background: #050403;
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid rgba(212,175,55,0.2);
+    }
+    .whatsapp-float {
       position: fixed;
-      bottom: 100px;
+      bottom: 25px;
       right: 25px;
-      background: var(--gold-primary);
-      width: 50px;
-      height: 50px;
+      background: #25D366;
+      width: 58px;
+      height: 58px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.5rem;
-      color: #0a0806;
-      cursor: pointer;
+      font-size: 2rem;
       z-index: 99;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.3s ease;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      transition: 0.3s;
+      animation: bounce 2s infinite;
     }
-    .scroll-top.show { opacity: 1; visibility: visible; }
-    .scroll-top:hover { transform: translateY(-5px); background: var(--gold-light); }
-    .whatsapp-float { position: fixed; bottom: 25px; right: 25px; background: #25D366; width: 58px; height: 58px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; z-index: 99; animation: bounce 2s infinite; }
-    @keyframes bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
-    .footer { background: #050403; text-align: center; padding: 2rem; border-top: 1px solid rgba(212,175,55,0.2); }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    .whatsapp-float:hover { transform: scale(1.1); }
     @media (max-width: 850px) {
       .nav-links { display: none; }
       .menu-toggle { display: block; }
-      .nav-links.mobile-open { display: flex; flex-direction: column; position: absolute; top: 80px; left: 0; width: 100%; background: #0a0806f2; backdrop-filter: blur(20px); padding: 2rem; gap: 1.5rem; text-align: center; }
+      .nav-links.mobile-open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background: #0a0806f2;
+        backdrop-filter: blur(20px);
+        padding: 2rem;
+        gap: 1.5rem;
+        text-align: center;
+      }
       .hero h1 { font-size: 2.5rem; }
+      .hero-tagline { font-size: 1rem; }
       .section-title { font-size: 2rem; }
-      .location-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -474,116 +687,372 @@
 
 <div class="navbar" id="navbar">
   <div class="logo-area">
-    <div class="logo-img">🍽️</div>
-    <div class="logo-text"><h1>SATYAVATHI</h1><p>CATERINGS • WE PLAN IN YOUR BUDGET</p></div>
+    <div class="logo-img">
+      <img src="image.png" alt="Satyavathi Logo" style="width: 55px; height: 100px; object-fit: cover; margin-top: 10px;">
+    </div>
+    <div class="logo-text">
+      <h1>SATYAVATHI</h1>
+      <p>CATERINGS • WE PLAN IN YOUR BUDGET</p>
+    </div>
   </div>
   <div class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></div>
   <div class="nav-links" id="navLinks">
-    <a href="#home" class="nav-link">HOME</a>
+    <a href="#home" class="nav-link active">HOME</a>
     <a href="#menu" class="nav-link">MENU</a>
-    <a href="#packages" class="nav-link">PACKAGES</a>
+    <a href="#chefExperience" class="nav-link">CHEF'S TABLE</a>
     <a href="#gallery" class="nav-link">GALLERY</a>
+    <a href="#shortsSection" class="nav-link">SHORTS</a>
+    <a href="#locationFeature" class="nav-link">LOCATION</a>
     <a href="#contact" class="nav-link">CONTACT</a>
-    <button class="lang-toggle" id="langToggleBtn"><i class="fas fa-language"></i> తెలుగు</button>
     <button class="download-menu-btn" id="downloadPdfBtn"><i class="fas fa-download"></i> Menu PDF</button>
   </div>
 </div>
 
-<!-- Hero Slider (existing) -->
+<!-- Hero Slider -->
 <section id="home" class="hero">
-  <div class="hero-slider" id="heroSlider"><div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1555244162-803834f70033?q=80&w=2070');"></div><div class="slide" style="background-image: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=2070');"></div><div class="slide" style="background-image: url('https://images.unsplash.com/photo-1600891964599-f61ba0e24092?q=80&w=2070');"></div><div class="slide" style="background-image: url('https://images.unsplash.com/photo-1551183053-bf91a1d81141?q=80&w=2070');"></div></div>
+  <div class="hero-slider" id="heroSlider">
+    <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1555244162-803834f70033?q=80&w=2070');"></div>
+    <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=2070');"></div>
+    <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1600891964599-f61ba0e24092?q=80&w=2070');"></div>
+    <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1551183053-bf91a1d81141?q=80&w=2070');"></div>
+  </div>
   <div class="hero-overlay"></div>
-  <div class="hero-content"><div class="hero-inner" data-aos="fade-up"><div class="hero-badge"><i class="fas fa-star-of-life"></i> EST. 2010 • PREMIUM CATERING</div><h1>SATYAVATHI</h1><div class="hero-tagline">"Where Every Bite Tells a Story of Royalty & Tradition"</div><p>Authentic South Indian & Indo-Asian flavors crafted with passion.</p><div class="btn-group"><button class="btn-primary" onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})">EXPLORE MENU</button><button class="btn-outline" id="heroDownloadBtn"><i class="fas fa-file-pdf"></i> Download Menu</button></div></div></div>
+  <div class="hero-content">
+    <div class="hero-inner" data-aos="fade-up">
+      <div class="hero-badge"><i class="fas fa-star-of-life"></i> EST. 2010 • PREMIUM CATERING</div>
+      <h1>SATYAVATHI</h1>
+      <div class="hero-tagline">"Where Every Bite Tells a Story of Royalty & Tradition"</div>
+      <p>Authentic South Indian & Indo-Asian flavors crafted with passion. We turn your celebrations into unforgettable feasts.</p>
+      <div class="btn-group">
+        <button class="btn-primary" onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})">EXPLORE MENU</button>
+        <button class="btn-outline" id="heroDownloadBtn"><i class="fas fa-file-pdf"></i> Download Menu</button>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- Stats -->
-<div class="stats" data-aos="fade-up"><div class="stat-item"><h2 class="counter" data-target="5000">0</h2><p>Happy Events</p></div><div class="stat-item"><h2 class="counter" data-target="250">0</h2><p>Signature Dishes</p></div><div class="stat-item"><h2 class="counter" data-target="100">0</h2><p>Budget Planning</p><p>% Satisfaction</p></div><div class="stat-item"><h2 class="counter" data-target="15">0</h2><p>Years of Legacy</p></div></div>
+<!-- Stats with Counter Animation -->
+<div class="stats" data-aos="fade-up">
+  <div class="stat-item"><h2 class="counter" data-target="5000">0</h2><p>Happy Events</p></div>
+  <div class="stat-item"><h2 class="counter" data-target="250">0</h2><p>Signature Dishes</p></div>
+  <div class="stat-item"><h2 class="counter" data-target="100">0</h2><p>Budget Planning</p><p style="font-size:0.8rem;">% Satisfaction</p></div>
+  <div class="stat-item"><h2 class="counter" data-target="15">0</h2><p>Years of Legacy</p></div>
+</div>
 
-<!-- INTERACTIVE DIGITAL MENU Section -->
-<section id="menu"><div class="section-title" data-aos="fade-up">Digital <span>Menu</span></div><div class="gold-accent"></div><div class="menu-tabs" id="menuTabs"></div><div id="menuItemsContainer" class="menu-grid"></div></section>
+<!-- MENU Section -->
+<section id="menu">
+  <div class="section-title" data-aos="fade-up">Exquisite <span>Menu Selections</span></div>
+  <div class="gold-accent"></div>
+  <div class="section-subtitle" data-aos="fade-up">Crafted from generations-old recipes with the finest ingredients.</div>
+  <div class="menu-tabs" id="menuTabs"></div>
+  <div id="menuItemsContainer" class="menu-grid"></div>
+</section>
 
-<!-- CATERING PACKAGES Section (NEW) -->
-<section id="packages"><div class="section-title" data-aos="fade-up">Catering <span>Packages</span></div><div class="gold-accent"></div><div class="packages-grid" id="packagesContainer"></div></section>
-
-<!-- Chef's Table Experience -->
-<section id="chefExperience"><div class="section-title" data-aos="fade-up"><span>👨‍🍳 Chef's Table</span> Experience</div><div class="gold-accent"></div><div class="chef-experience"><div class="experience-grid"><div class="exp-card"><i class="fas fa-microphone-alt"></i><h3>Live Demo Counter</h3><p>Watch master chefs prepare signature dishes live</p></div><div class="exp-card"><i class="fas fa-trophy"></i><h3>Award-Winning Recipes</h3><p>Culinary excellence recognized nationally</p></div><div class="exp-card"><i class="fas fa-wine-glass-alt"></i><h3>Plated Fine Dining</h3><p>Elegant plating for premium events</p></div></div><div class="live-chef"><i class="fas fa-utensil-spoon"></i><span><strong>🔥 Live Kitchen Counters Available</strong> — Interactive food stations</span><i class="fas fa-fire"></i></div></div></section>
+<!-- CHEF'S TABLE EXPERIENCE -->
+<section id="chefExperience">
+  <div class="section-title" data-aos="fade-up"><span>👨‍🍳 Chef's Table</span> Experience</div>
+  <div class="gold-accent"></div>
+  <div class="chef-experience" data-aos="fade-up">
+    <div class="experience-grid">
+      <div class="exp-card"><i class="fas fa-microphone-alt"></i><h3>Live Demo Counter</h3><p>Watch our master chefs prepare signature dishes live at your event</p></div>
+      <div class="exp-card"><i class="fas fa-trophy"></i><h3>Award-Winning Recipes</h3><p>Decades of culinary excellence recognized nationally</p></div>
+      <div class="exp-card"><i class="fas fa-wine-glass-alt"></i><h3>Plated Fine Dining</h3><p>Elegant plating and royal presentation for premium events</p></div>
+      <div class="exp-card"><i class="fas fa-calendar-alt"></i><h3>Personalized Menu Curation</h3><p>Our chef designs a custom menu based on your taste and theme</p></div>
+    </div>
+    <div class="live-chef"><i class="fas fa-utensil-spoon"></i><span><strong>🔥 Live Kitchen Counters Available</strong> — Interactive food stations for weddings & corporate galas</span><i class="fas fa-fire"></i></div>
+  </div>
+</section>
 
 <!-- Why Choose Us -->
-<section id="features"><div class="section-title" data-aos="fade-up">Why <span>Choose Us</span></div><div class="gold-accent"></div><div class="features-grid"><div class="feature-card"><i class="fas fa-hand-holding-heart"></i><h3>Budget Friendly</h3><p>We plan in your budget without compromising quality.</p></div><div class="feature-card"><i class="fas fa-chef-hat"></i><h3>Master Chefs</h3><p>Experienced chefs from authentic backgrounds.</p></div><div class="feature-card"><i class="fas fa-truck"></i><h3>Pan India Service</h3><p>We cater across India with premium logistics.</p></div><div class="feature-card"><i class="fas fa-leaf"></i><h3>Hygiene First</h3><p>ISO standard kitchens & fresh ingredients.</p></div></div></section>
+<section id="features">
+  <div class="section-title" data-aos="fade-up">Why <span>Choose Us</span></div>
+  <div class="gold-accent"></div>
+  <div class="features-grid" data-aos="fade-up">
+    <div class="feature-card"><i class="fas fa-hand-holding-heart"></i><h3>Budget Friendly</h3><p>We plan in your budget without compromising quality.</p></div>
+    <div class="feature-card"><i class="fas fa-chef-hat"></i><h3>Master Chefs</h3><p>Experienced chefs from authentic culinary backgrounds.</p></div>
+    <div class="feature-card"><i class="fas fa-truck"></i><h3>Pan India Service</h3><p>We cater across India with premium logistics.</p></div>
+    <div class="feature-card"><i class="fas fa-leaf"></i><h3>Hygiene First</h3><p>ISO standard kitchens & fresh ingredients.</p></div>
+  </div>
+</section>
 
 <!-- Gallery -->
-<section id="gallery"><div class="section-title" data-aos="fade-up">Visual <span>Story</span></div><div class="gold-accent"></div><div class="swiper mySwiper"><div class="swiper-wrapper"><div class="swiper-slide"><img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?w=800" alt="Catering"></div><div class="swiper-slide"><img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=800" alt="Biryani"></div><div class="swiper-slide"><img src="https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=800" alt="Live Counter"></div></div><div class="swiper-pagination"></div><div class="swiper-button-next"></div><div class="swiper-button-prev"></div></div></section>
+<section id="gallery">
+  <div class="section-title" data-aos="fade-up">Visual <span>Story</span></div>
+  <div class="gold-accent"></div>
+  <div class="swiper mySwiper" data-aos="zoom-in">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?w=800" alt="Catering"></div>
+      <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=800" alt="Biryani"></div>
+      <div class="swiper-slide"><img src="Image1.png" alt="Biryani"></div>
+      <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=800" alt="Live Counter"></div>
+      <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800" alt="Wedding"></div>
+    </div>
+    <div class="swiper-pagination"></div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+  </div>
+</section>
 
-<!-- YouTube Shorts -->
-<section id="shortsSection"><div class="shorts-section"><div class="section-title" style="font-size:2rem;"><span>📱 Culinary</span> Shorts</div><div class="gold-accent"></div><div class="shorts-grid"><div class="short-card"><div class="video-wrapper"><iframe src="https://www.youtube.com/embed/JgBx8i4Cw04" frameborder="0" allowfullscreen></iframe></div><div class="short-caption">Royal Biryani Magic</div></div><div class="short-card"><div class="video-wrapper"><iframe src="https://www.youtube.com/embed/ubqRWwT38t4" frameborder="0" allowfullscreen></iframe></div><div class="short-caption">Live Counter</div></div><div class="short-card"><div class="video-wrapper"><iframe src="https://www.youtube.com/embed/hq2UkSipUko" frameborder="0" allowfullscreen></iframe></div><div class="short-caption">Traditional Desserts</div></div><div class="short-card"><div class="video-wrapper"><iframe src="https://www.youtube.com/embed/1Odhb5Rzfao" frameborder="0" allowfullscreen></iframe></div><div class="short-caption">Grand Wedding Platter</div></div><div class="short-card"><div class="video-wrapper"><iframe src="https://www.youtube.com/embed/ir6DIp6ABpU" frameborder="0" allowfullscreen></iframe></div><div class="short-caption">Chef's Signature</div></div></div></div></section>
+<!-- NEW: YouTube Shorts Section -->
+<section id="shortsSection">
+  <div class="shorts-section" data-aos="fade-up">
+    <div class="section-title" style="font-size:2.5rem;"><span>📱 Our Culinary</span> Shorts</div>
+    <div class="gold-accent"></div>
+    <p style="text-align: center; margin-bottom: 1rem;">Bite-sized glimpses of our signature dishes, live counters, and festive vibes.</p>
+    <div class="shorts-grid">
+      <div class="short-card">
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/JgBx8i4Cw04" title="YouTube Shorts" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="short-caption"><i class="fab fa-youtube"></i> Royal Biryani Magic</div>
+      </div>
+      <div class="short-card">
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/ubqRWwT38t4" title="YouTube Shorts" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="short-caption"><i class="fab fa-youtube"></i> Live Counter Experience</div>
+      </div>
+      <div class="short-card">
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/hq2UkSipUko" title="YouTube Shorts" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="short-caption"><i class="fab fa-youtube"></i> Traditional Desserts</div>
+      </div>
+      <div class="short-card">
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/1Odhb5Rzfao" title="YouTube Shorts" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="short-caption"><i class="fab fa-youtube"></i> Grand Wedding Platter</div>
+      </div>
+      <div class="short-card">
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/ir6DIp6ABpU" title="YouTube Shorts" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="short-caption"><i class="fab fa-youtube"></i> Chef's Signature Style</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-<!-- Location -->
-<section id="locationFeature"><div class="location-section"><div class="section-title" style="font-size:2rem;"><span>📍 Our</span> Royal Address</div><div class="gold-accent"></div><div class="location-grid"><div class="location-details"><div class="address-card"><p><i class="fas fa-location-dot"></i> Currency Nagar, 6th Line, Vijayawada, Andhra Pradesh - 520008</p><p><i class="fas fa-phone-alt"></i> +91 90302 71841</p></div><button class="direction-btn" id="getDirectionsBtn"><i class="fab fa-google"></i> Get Directions</button></div><div class="map-iframe-container"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3825.123456789012!2d80.67718297483253!3d16.51981508428316!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a35e56f5985b5f1%3A0xcadf4660c300a0fd!2sSatyavathicatering!5e0!3m2!1sen!2sin!4v1712150000000!5m2!1sen!2sin" allowfullscreen></iframe></div></div></div></section>
+<!-- LOCATION FEATURE -->
+<section id="locationFeature">
+  <div class="location-section" data-aos="fade-up">
+    <div class="section-title" style="font-size:2.5rem;"><span>📍 Our</span> Royal Address</div>
+    <div class="gold-accent"></div>
+    <div class="location-grid">
+      <div class="location-details">
+        <h3><i class="fas fa-map-pin"></i> Visit Our Grand Kitchen</h3>
+        <div class="address-card">
+          <p><i class="fas fa-building"></i> <strong>Satyavathi Catering</strong></p>
+          <p><i class="fas fa-location-dot"></i> Currency Nagar, 6th Line, Vijayawada, Andhra Pradesh - 520008</p>
+          <p><i class="fas fa-phone-alt"></i> +91 90302 71841</p>
+          <div class="business-hours"><span class="hours-badge"><i class="far fa-clock"></i> Mon-Sun: 9:00 AM – 10:00 PM</span><span class="hours-badge"><i class="fas fa-check-circle"></i> Open Now</span></div>
+        </div>
+        <button class="direction-btn" id="getDirectionsBtn"><i class="fab fa-google"></i> Get Directions on Google Maps</button>
+      </div>
+      <div class="map-iframe-container">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3825.123456789012!2d80.67718297483253!3d16.51981508428316!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a35e56f5985b5f1%3A0xcadf4660c300a0fd!2sSatyavathicatering!5e0!3m2!1sen!2sin!4v1712150000000!5m2!1sen!2sin" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
 
-<!-- Contact -->
-<section id="contact"><div class="section-title" data-aos="fade-up">Let's Curate Your <span>Dream Feast</span></div><div class="gold-accent"></div><div class="contact-grid"><div class="contact-info"><h3><i class="fas fa-map-marker-alt"></i> Address</h3><p>Currency Nagar, Vijayawada - 520008</p><br><h3><i class="fas fa-phone-alt"></i> Call / WhatsApp</h3><p>+91 90302 71841</p><h3><i class="fas fa-envelope"></i> Email</h3><p>Sparkevents90@gmail.com</p></div><div class="contact-form"><h3>Request a personalized quote</h3><form id="whatsappContactForm"><div class="input-group"><input type="text" placeholder="Your Name" required id="waName"></div><div class="input-group"><input type="tel" placeholder="Phone Number" required id="waPhone"></div><div class="input-group"><select id="waCategory" required><option value="">Event Category</option><option value="Wedding">Wedding</option><option value="Corporate">Corporate</option></select></div><div class="input-group"><textarea rows="2" placeholder="Guest count, budget" id="waMessage"></textarea></div><button type="submit" class="submit-btn"><i class="fab fa-whatsapp"></i> Send via WhatsApp</button></form></div></div></section>
+<!-- Contact Section with NEW Menu Preference Dropdown -->
+<section id="contact">
+  <div class="section-title" data-aos="fade-up">Let's Curate Your <span>Dream Feast</span></div>
+  <div class="gold-accent"></div>
+  <div class="contact-grid" data-aos="fade-up">
+    <div class="contact-info">
+      <h3><i class="fas fa-map-marker-alt"></i> Address</h3>
+      <p>Currency Nagar, 6th Line, Vijayawada, Andhra Pradesh - 520008</p><br>
+      <h3><i class="fas fa-phone-alt"></i> Call / WhatsApp</h3>
+      <p>+91 90302 71841</p>
+      <h3><i class="fas fa-envelope"></i> Email</h3>
+      <p>Sparkevents90@gmail.com</p>
+      <div style="margin-top: 2rem;"><i class="fab fa-instagram" style="font-size: 2rem; margin-right: 1rem; cursor: pointer;"></i><i class="fab fa-facebook" style="font-size: 2rem; cursor: pointer;"></i></div>
+    </div>
+    <div class="contact-form">
+      <h3>Request a personalized quote</h3>
+      <form id="whatsappContactForm">
+        <div class="input-group"><input type="text" placeholder="Your Name" required id="waName"></div>
+        <div class="input-group"><input type="email" placeholder="Email Address" id="waEmail"></div>
+        <div class="input-group"><input type="tel" placeholder="Phone Number" required id="waPhone"></div>
+        <div class="input-group">
+          <select id="waCategory" required>
+            <option value="">Select Event Category</option>
+            <option value="Wedding">Wedding Catering</option>
+            <option value="Corporate Event">Corporate Event</option>
+            <option value="Birthday Party">Birthday Party</option>
+            <option value="Religious Ceremony">Religious Ceremony</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <select id="menuPreference">
+            <option value="">Select Menu Preference (Optional)</option>
+            <option value="Veg Only">🌱 Veg Only - Pure Vegetarian Delights</option>
+            <option value="Non-Veg Only">🍗 Non-Veg Only - Signature Non-Vegetarian Feast</option>
+            <option value="Both Veg & Non-Veg">🍽️ Both Veg & Non-Veg - Complete Royal Spread</option>
+          </select>
+        </div>
+        <div class="input-group"><textarea rows="2" placeholder="Guest count, budget, special requests" id="waMessage"></textarea></div>
+        <button type="submit" class="submit-btn"><i class="fab fa-whatsapp"></i> Send via WhatsApp</button>
+      </form>
+      <p id="formWhatsFeedback" style="margin-top: 10px; font-size: 0.8rem;"></p>
+    </div>
+  </div>
+</section>
 
-<div class="download-section"><i class="fas fa-file-pdf" style="font-size: 3rem; color: var(--gold-primary);"></i><h3>Complete Catering Menu PDF</h3><button id="premiumDownloadBtn" class="btn-primary"><i class="fas fa-download"></i> Download Menu (PDF)</button></div>
+<div class="download-section" data-aos="zoom-in">
+  <i class="fas fa-file-pdf" style="font-size: 3rem; color: var(--gold-primary); margin-bottom: 1rem;"></i>
+  <h3>Complete Catering Menu PDF</h3>
+  <p>Download our full menu card featuring 150+ authentic dishes.</p>
+  <button id="premiumDownloadBtn" class="btn-primary"><i class="fas fa-download"></i> Download Menu (PDF)</button>
+</div>
 
-<footer class="footer"><p>© 2025 SATYAVATHI CATERINGS — "Where Every Bite Tells a Story of Royalty & Tradition"</p></footer>
-
+<footer class="footer">
+  <p>© 2025 SATYAVATHI CATERINGS — "Where Every Bite Tells a Story of Royalty & Tradition"</p>
+  <p style="margin-top: 0.5rem; font-size: 0.75rem;">WE PLAN IN YOUR BUDGET | Premium Catering Services Since 2010</p>
+</footer>
 <a href="https://wa.me/919030271841" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
-<div class="scroll-top" id="scrollTopBtn"><i class="fas fa-arrow-up"></i></div>
 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
-  // Menu Data with interactive prices
+  // FULL MENU DATA
   const fullMenu = {
-    "Starters (Veg)": [{name:"Gobi Manchurian",price:"₹249"},{name:"Chilli Paneer",price:"₹299"},{name:"Mirchi Bajji",price:"₹149"},{name:"Punugulu",price:"₹129"}],
-    "Starters (Non-Veg)": [{name:"Chicken 65",price:"₹349"},{name:"Apollo Fish",price:"₹399"},{name:"Prawns 65",price:"₹449"},{name:"Mutton Seekh",price:"₹399"}],
-    "Main Course (Veg)": [{name:"Gutti Vankaya",price:"₹279"},{name:"Paneer Butter Masala",price:"₹319"},{name:"Kadai Mushroom",price:"₹289"}],
-    "Main Course (Non-Veg)": [{name:"Natu Kodi Iguru",price:"₹429"},{name:"Mutton Rogan Josh",price:"₹499"},{name:"Prawns Curry",price:"₹479"}],
-    "Rice & Biryani": [{name:"Chicken Dum Biryani",price:"₹359"},{name:"Mutton Biryani",price:"₹429"},{name:"Veg Biryani",price:"₹259"}],
-    "Desserts": [{name:"Gulab Jamun",price:"₹129"},{name:"Rasmalai",price:"₹179"},{name:"Double Ka Meetha",price:"₹149"}]
+    "Starters (Veg)": ["Gobi Manchurian", "Chilli Paneer", "Mirchi Bajji", "Punugulu", "Masala Vada", "Onion Pakodi", "Baby Corn 65", "Alu 65", "Mushroom Tikka", "Gare (Medu Vada)"],
+    "Starters (Non-Veg)": ["Chicken 65", "Apollo Fish", "Prawns 65", "Mutton Seekh", "Chicken Lollipop", "Egg Pakoda", "Chicken Majestic", "Pepper Chicken"],
+    "Main Course (Veg)": ["Gutti Vankaya", "Paneer Butter Masala", "Kadai Mushroom", "Dondakaya Fry", "Gongura Curry", "Navratna Korma", "Veg Kolhapuri", "Malai Kofta"],
+    "Main Course (Non-Veg)": ["Natu Kodi Iguru", "Mutton Rogan Josh", "Prawns Curry", "Chicken Chettinad", "Fish Curry", "Egg Curry", "Kodi Kura", "Royyala Vepudu"],
+    "Rice & Biryani": ["Hyderabadi Veg Biryani", "Chicken Dum Biryani", "Mutton Biryani", "Prawns Biryani", "Ghee Rice", "Curd Rice", "Tomato Rice", "Bisi Bele Bath", "Puliyogare"],
+    "Breads": ["Butter Naan", "Garlic Naan", "Tandoori Roti", "Rumali Roti", "Alu Paratha", "Laccha Paratha", "Poori"],
+    "Desserts": ["Gulab Jamun", "Rasmalai", "Jalebi", "Double Ka Meetha", "Carrot Halwa", "Badam Kheer", "Ice Creams", "Rasgulla"]
   };
+  
   let activeCat = Object.keys(fullMenu)[0];
-  function renderTabs() { const container = document.getElementById('menuTabs'); container.innerHTML = ''; Object.keys(fullMenu).forEach(cat => { const btn = document.createElement('button'); btn.className = `tab-btn ${activeCat === cat ? 'active' : ''}`; btn.innerText = cat; btn.onclick = () => { activeCat = cat; renderTabs(); renderMenu(); }; container.appendChild(btn); }); }
-  function renderMenu() { const items = fullMenu[activeCat]; const grid = document.getElementById('menuItemsContainer'); grid.innerHTML = ''; items.forEach(item => { const card = document.createElement('div'); card.className = 'menu-card'; let icon = '<i class="fas fa-utensils menu-icon"></i>'; if(activeCat.includes('Non-Veg')) icon = '<i class="fas fa-drumstick-bite menu-icon"></i>'; card.innerHTML = `${icon}<h3>${item.name}</h3><p>Chef's signature preparation</p><div class="menu-price-tag">${item.price}</div>`; grid.appendChild(card); }); }
   
-  // Catering Packages Data
-  const packages = [
-    { name:"Silver Feast", price:"₹499/plate", badge:"Economical", features:["5 Veg + 2 Non-Veg Starters","2 Main Courses","Biryani & Dessert","Welcome Drink"] },
-    { name:"Golden Royale", price:"₹749/plate", badge:"Most Popular", features:["8 Starters (4 Veg+4 Non-Veg)","3 Live Counters","5 Main Courses","Premium Desserts","Gulab Jamun Live"] },
-    { name:"Platinum Maharaja", price:"₹999/plate", badge:"Luxury", features:["10+ Starters","Live Pasta & Tandoor","Chef Special Biryani","7 Main Courses","Chocolate Fountain","Takeaway Boxes"] }
-  ];
-  function renderPackages() { const container = document.getElementById('packagesContainer'); container.innerHTML = ''; packages.forEach(pkg => { const card = document.createElement('div'); card.className = 'package-card'; card.innerHTML = `<div class="package-badge">${pkg.badge}</div><h3>${pkg.name}</h3><div class="price">${pkg.price}</div><ul>${pkg.features.map(f => `<li><i class="fas fa-check-circle" style="color:#d4af37;"></i> ${f}</li>`).join('')}</ul><button class="btn-primary" style="padding:0.5rem 1.5rem; font-size:0.9rem;" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Enquire Now</button>`; container.appendChild(card); }); }
+  function renderTabs() {
+    const container = document.getElementById('menuTabs');
+    container.innerHTML = '';
+    Object.keys(fullMenu).forEach(cat => {
+      const btn = document.createElement('button');
+      btn.className = `tab-btn ${activeCat === cat ? 'active' : ''}`;
+      btn.innerText = cat;
+      btn.onclick = () => { activeCat = cat; renderTabs(); renderMenu(); };
+      container.appendChild(btn);
+    });
+  }
   
-  // Telugu Language Toggle (Dynamic)
-  let isTelugu = false;
-  const teluguTexts = { heroTagline:""ప్రతి కాటు రాజసం & సంప్రదాయం కథ చెప్పేది"", heroDesc:"ప్రామాణికమైన దక్షిణ భారత & ఇండో-ఏషియన్ రుచులు అభిరుచితో రూపొందించబడ్డాయి.", exploreBtn:"మెను చూడండి", downloadBtn:"మెను డౌన్లోడ్", menuTitle:"డిజిటల్ మెను", packagesTitle:"కేటరింగ్ ప్యాకేజీలు", contactTitle:"మీ కలల విందును ప్లాన్ చేద్దాం" };
-  function toggleLanguage() { isTelugu = !isTelugu; const btn = document.getElementById('langToggleBtn'); if(isTelugu){ btn.innerHTML = '<i class="fas fa-language"></i> English'; document.querySelector('.hero-tagline').innerText = teluguTexts.heroTagline; document.querySelector('.hero p').innerText = teluguTexts.heroDesc; document.querySelectorAll('.btn-primary')[0].innerText = teluguTexts.exploreBtn; document.getElementById('heroDownloadBtn').innerText = teluguTexts.downloadBtn; document.querySelector('#menu .section-title').innerHTML = teluguTexts.menuTitle; document.querySelector('#packages .section-title').innerHTML = teluguTexts.packagesTitle; document.querySelector('#contact .section-title').innerHTML = teluguTexts.contactTitle; } else { btn.innerHTML = '<i class="fas fa-language"></i> తెలుగు'; document.querySelector('.hero-tagline').innerText = '"Where Every Bite Tells a Story of Royalty & Tradition"'; document.querySelector('.hero p').innerText = "Authentic South Indian & Indo-Asian flavors crafted with passion."; document.querySelectorAll('.btn-primary')[0].innerText = "EXPLORE MENU"; document.getElementById('heroDownloadBtn').innerHTML = '<i class="fas fa-file-pdf"></i> Download Menu'; document.querySelector('#menu .section-title').innerHTML = 'Digital <span>Menu</span>'; document.querySelector('#packages .section-title').innerHTML = 'Catering <span>Packages</span>'; document.querySelector('#contact .section-title').innerHTML = 'Let\'s Curate Your <span>Dream Feast</span>'; } }
+  function renderMenu() {
+    const items = fullMenu[activeCat];
+    const grid = document.getElementById('menuItemsContainer');
+    grid.innerHTML = '';
+    items.forEach(item => {
+      const card = document.createElement('div');
+      card.className = 'menu-card';
+      let icon = '<i class="fas fa-utensils menu-icon"></i>';
+      if (activeCat.includes('Non-Veg')) icon = '<i class="fas fa-drumstick-bite menu-icon"></i>';
+      if (activeCat.includes('Desserts')) icon = '<i class="fas fa-cake-candles menu-icon"></i>';
+      if (activeCat.includes('Rice')) icon = '<i class="fas fa-bowl-food menu-icon"></i>';
+      card.innerHTML = `${icon}<h3>${item}</h3><p>Chef's signature preparation</p><div><span style="background:#d4af371a; padding:0.2rem 1rem; border-radius:30px;">✦ Premium</span></div>`;
+      grid.appendChild(card);
+    });
+  }
   
-  // Scroll-to-top functionality
-  const scrollBtn = document.getElementById('scrollTopBtn');
-  window.addEventListener('scroll', () => { if(window.scrollY > 500) scrollBtn.classList.add('show'); else scrollBtn.classList.remove('show'); });
-  scrollBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+  // Counter Animation
+  function animateCounters() {
+    const counters = document.querySelectorAll('.counter');
+    counters.forEach(counter => {
+      const target = parseInt(counter.getAttribute('data-target'));
+      let current = 0;
+      const increment = target / 50;
+      const updateCounter = () => {
+        current += increment;
+        if (current < target) {
+          counter.innerText = Math.ceil(current);
+          requestAnimationFrame(updateCounter);
+        } else {
+          counter.innerText = target;
+        }
+      };
+      updateCounter();
+    });
+  }
   
-  // PDF Download
-  function downloadMenuPDF() { const link = document.createElement('a'); link.href = 'menu.pdf'; link.download = 'Satyavathi_Menu.pdf'; link.click(); }
+  // PDF Download using direct file (menu.pdf)
+  function downloadMenuPDF() {
+    const link = document.createElement('a');
+    link.href = 'menu.pdf';
+    link.download = 'Satyavathi_Menu.pdf';
+    link.click();
+  }
+  
+  // PDF Buttons
   document.getElementById('downloadPdfBtn')?.addEventListener('click', downloadMenuPDF);
   document.getElementById('premiumDownloadBtn')?.addEventListener('click', downloadMenuPDF);
   document.getElementById('heroDownloadBtn')?.addEventListener('click', downloadMenuPDF);
   
-  // WhatsApp Form
-  function sendToWhatsApp(e) { e.preventDefault(); const name = document.getElementById('waName').value; const phone = document.getElementById('waPhone').value; const category = document.getElementById('waCategory').value; const msg = document.getElementById('waMessage').value; if(!name || !phone || !category) return alert("Please fill required fields"); window.open(`https://wa.me/919030271841?text=*Inquiry*%0AName: ${name}%0APhone: ${phone}%0AEvent: ${category}%0ADetails: ${msg}`, '_blank'); }
-  document.getElementById('whatsappContactForm')?.addEventListener('submit', sendToWhatsApp);
+  // WhatsApp Integration with NEW Menu Preference field
+  function sendToWhatsApp(event) {
+    event.preventDefault();
+    const name = document.getElementById('waName').value;
+    const email = document.getElementById('waEmail').value;
+    const phone = document.getElementById('waPhone').value;
+    const category = document.getElementById('waCategory').value;
+    const menuPref = document.getElementById('menuPreference').value;
+    const message = document.getElementById('waMessage').value;
+    
+    if (!name || !phone || !category) {
+      document.getElementById('formWhatsFeedback').innerHTML = '⚠️ Please fill Name, Phone, and Event Category.';
+      return;
+    }
+    
+    let menuPrefText = '';
+    if (menuPref) {
+      const prefMap = {
+        'Veg Only': '🌱 Veg Only - Pure Vegetarian Delights',
+        'Non-Veg Only': '🍗 Non-Veg Only - Signature Non-Vegetarian Feast',
+        'Both Veg & Non-Veg': '🍽️ Both Veg & Non-Veg - Complete Royal Spread'
+      };
+      menuPrefText = `%0A*Menu Preference:* ${prefMap[menuPref] || menuPref}`;
+    }
+    
+    let whatsappMsg = `*New Catering Inquiry*%0A%0A*Name:* ${name}%0A*Email:* ${email || 'Not provided'}%0A*Phone:* ${phone}%0A*Event Category:* ${category}${menuPrefText}%0A*Details:* ${message || 'None'}%0A%0AThank you! Please share menu & package details.`;
+    window.open(`https://wa.me/919030271841?text=${whatsappMsg}`, '_blank');
+    document.getElementById('formWhatsFeedback').innerHTML = '✅ Redirecting to WhatsApp...';
+    setTimeout(() => { document.getElementById('whatsappContactForm').reset(); document.getElementById('formWhatsFeedback').innerHTML = ''; }, 2000);
+  }
   
-  // Slider & Counters & Mobile Menu
-  let currentSlide = 0; const slides = document.querySelectorAll('.hero-slider .slide'); setInterval(() => { slides[currentSlide].classList.remove('active'); currentSlide = (currentSlide+1)%slides.length; slides[currentSlide].classList.add('active'); }, 5000);
-  AOS.init({ duration: 800, once: true });
-  renderTabs(); renderMenu(); renderPackages();
-  setTimeout(() => { document.querySelectorAll('.counter').forEach(c => { const target = parseInt(c.dataset.target); let curr = 0; const inc = target/50; const upd = () => { curr += inc; if(curr<target){ c.innerText = Math.ceil(curr); requestAnimationFrame(upd); } else c.innerText = target; }; upd(); }); }, 500);
+  // Hero Slider
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.hero-slider .slide');
+  setInterval(() => { slides[currentSlide].classList.remove('active'); currentSlide = (currentSlide + 1) % slides.length; slides[currentSlide].classList.add('active'); }, 5000);
+  
+  // Initialize
+  AOS.init({ duration: 800, once: true, offset: 80 });
+  renderTabs(); renderMenu();
+  setTimeout(animateCounters, 500);
+  
   new Swiper('.mySwiper', { loop: true, autoplay: { delay: 3000 }, pagination: { el: '.swiper-pagination', clickable: true }, navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' }, slidesPerView: 1, breakpoints: { 768: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } } });
-  document.getElementById('menuToggle')?.addEventListener('click', () => document.getElementById('navLinks').classList.toggle('mobile-open'));
-  document.querySelectorAll('.nav-link').forEach(l => l.addEventListener('click', () => document.getElementById('navLinks').classList.remove('mobile-open')));
-  document.getElementById('getDirectionsBtn')?.addEventListener('click', () => { window.open(`https://www.google.com/maps/dir/?api=1&destination=Satyavathi+Catering+Currency+Nagar+Vijayawada`, '_blank'); });
-  document.getElementById('langToggleBtn')?.addEventListener('click', toggleLanguage);
+  
+  // Mobile Menu
+  const toggleBtn = document.getElementById('menuToggle');
+  const navLinksDiv = document.getElementById('navLinks');
+  toggleBtn.addEventListener('click', () => navLinksDiv.classList.toggle('mobile-open'));
+  document.querySelectorAll('.nav-link').forEach(l => l.addEventListener('click', () => navLinksDiv.classList.remove('mobile-open')));
+  
+  // WhatsApp Form
+  document.getElementById('whatsappContactForm').addEventListener('submit', sendToWhatsApp);
+  
+  // Get Directions Button
+  const directionsBtn = document.getElementById('getDirectionsBtn');
+  if (directionsBtn) {
+    directionsBtn.addEventListener('click', () => {
+      const destination = "Satyavathi Catering, Currency Nagar, Vijayawada, Andhra Pradesh 520008";
+      const mapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(destination)}&destination_place_id=ChIJ8bWXlW_lNToR_aAAwwBG38o`;
+      window.open(mapsUrl, '_blank');
+    });
+  }
 </script>
 </body>
 </html>
