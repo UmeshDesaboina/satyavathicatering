@@ -576,6 +576,64 @@
       margin: 0 6% 3rem 6%;
       padding: 3rem;
     }
+    
+    /* YouTube Shorts Section */
+    .shorts-section {
+      background: linear-gradient(135deg, #0e0b08, #12100c);
+      border-radius: 48px;
+      margin: 2rem 6% 3rem 6%;
+      padding: 2rem;
+      border: 1px solid rgba(212,175,55,0.3);
+    }
+    .shorts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.8rem;
+      margin-top: 2rem;
+    }
+    .short-card {
+      background: rgba(0,0,0,0.5);
+      border-radius: 28px;
+      overflow: hidden;
+      transition: all 0.4s ease;
+      border: 1px solid rgba(212,175,55,0.2);
+      position: relative;
+    }
+    .short-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--gold-primary);
+      box-shadow: var(--shadow-gold);
+    }
+    .video-wrapper {
+      position: relative;
+      padding-bottom: 177%; /* 9:16 aspect ratio for shorts */
+      height: 0;
+      overflow: hidden;
+    }
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+    .short-caption {
+      padding: 1rem;
+      text-align: center;
+      background: rgba(0,0,0,0.6);
+      font-weight: 500;
+      color: var(--gold-light);
+    }
+    @media (max-width: 640px) {
+      .shorts-grid {
+        grid-template-columns: 1fr;
+      }
+      .video-wrapper {
+        padding-bottom: 177%;
+      }
+    }
+    
     .footer {
       background: #050403;
       text-align: center;
@@ -643,6 +701,7 @@
     <a href="#menu" class="nav-link">MENU</a>
     <a href="#chefExperience" class="nav-link">CHEF'S TABLE</a>
     <a href="#gallery" class="nav-link">GALLERY</a>
+    <a href="#shortsSection" class="nav-link">SHORTS</a>
     <a href="#locationFeature" class="nav-link">LOCATION</a>
     <a href="#contact" class="nav-link">CONTACT</a>
     <button class="download-menu-btn" id="downloadPdfBtn"><i class="fas fa-download"></i> Menu PDF</button>
@@ -734,6 +793,47 @@
   </div>
 </section>
 
+<!-- NEW: YouTube Shorts Section -->
+<section id="shortsSection">
+  <div class="shorts-section" data-aos="fade-up">
+    <div class="section-title" style="font-size:2.5rem;"><span>📱 Our Culinary</span> Shorts</div>
+    <div class="gold-accent"></div>
+    <p style="text-align: center; margin-bottom: 1rem;">Bite-sized glimpses of our signature dishes, live counters, and festive vibes.</p>
+    <div class="shorts-grid">
+      <div class="short-card">
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/JgBx8i4Cw04" title="YouTube Shorts" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="short-caption"><i class="fab fa-youtube"></i> Royal Biryani Magic</div>
+      </div>
+      <div class="short-card">
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/ubqRWwT38t4" title="YouTube Shorts" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="short-caption"><i class="fab fa-youtube"></i> Live Counter Experience</div>
+      </div>
+      <div class="short-card">
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/hq2UkSipUko" title="YouTube Shorts" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="short-caption"><i class="fab fa-youtube"></i> Traditional Desserts</div>
+      </div>
+      <div class="short-card">
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/1Odhb5Rzfao" title="YouTube Shorts" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="short-caption"><i class="fab fa-youtube"></i> Grand Wedding Platter</div>
+      </div>
+      <div class="short-card">
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/ir6DIp6ABpU" title="YouTube Shorts" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="short-caption"><i class="fab fa-youtube"></i> Chef's Signature Style</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- LOCATION FEATURE -->
 <section id="locationFeature">
   <div class="location-section" data-aos="fade-up">
@@ -786,7 +886,6 @@
             <option value="Religious Ceremony">Religious Ceremony</option>
           </select>
         </div>
-        <!-- NEW: Menu Preference Dropdown -->
         <div class="input-group">
           <select id="menuPreference">
             <option value="">Select Menu Preference (Optional)</option>
