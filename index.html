@@ -429,6 +429,94 @@
     .swiper-slide img { width: 100%; height: 320px; object-fit: cover; border-radius: 24px; transition: 0.5s; }
     .swiper-slide:hover img { transform: scale(1.05); }
 
+    /* Enhanced Location & Map Section (New Feature) */
+    .location-section {
+      background: linear-gradient(135deg, #12100c, #0e0b08);
+      border-radius: 48px;
+      margin: 2rem 6% 3rem 6%;
+      padding: 2rem;
+      border: 1px solid rgba(212,175,55,0.3);
+      transition: all 0.4s ease;
+    }
+    .location-section:hover {
+      box-shadow: var(--shadow-gold);
+      border-color: var(--gold-primary);
+    }
+    .location-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 2rem;
+      align-items: center;
+    }
+    .location-details {
+      padding-right: 1rem;
+    }
+    .location-details h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: var(--gold-primary);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .address-card {
+      background: rgba(0,0,0,0.4);
+      border-radius: 28px;
+      padding: 1.5rem;
+      margin: 1rem 0;
+      border-left: 4px solid var(--gold-primary);
+    }
+    .address-card i {
+      color: var(--gold-primary);
+      width: 30px;
+      margin-right: 12px;
+    }
+    .map-iframe-container {
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 20px 35px -12px rgba(0,0,0,0.5);
+      border: 2px solid rgba(212,175,55,0.3);
+      transition: 0.3s;
+    }
+    .map-iframe-container iframe {
+      width: 100%;
+      height: 320px;
+      border: 0;
+      display: block;
+    }
+    .direction-btn {
+      background: transparent;
+      border: 1.5px solid var(--gold-primary);
+      padding: 0.7rem 1.8rem;
+      border-radius: 40px;
+      color: var(--gold-primary);
+      font-weight: 600;
+      margin-top: 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+    .direction-btn:hover {
+      background: var(--gold-primary);
+      color: #0a0806;
+      transform: translateX(5px);
+    }
+    @media (max-width: 850px) {
+      .location-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      .location-details {
+        text-align: center;
+      }
+      .address-card {
+        text-align: left;
+      }
+    }
+
     /* Contact Form */
     .contact-grid {
       display: flex;
@@ -529,10 +617,9 @@
 
 <div class="navbar" id="navbar">
   <div class="logo-area">
-   <!-- <div class="logo-img"><img src="image.png" alt="Logo" style="width:55px;height:100px;;object-fit:cover;"></div> -->
     <div class="logo-img">
-    <img src="image.png" alt="Satyavathi Logo" style="width: 55px; height: 100px; ; object-fit: cover; margin-top: 10px;">
-</div>
+      <img src="image.png" alt="Satyavathi Logo" style="width: 55px; height: 100px; object-fit: cover; margin-top: 10px;">
+    </div>
     <div class="logo-text">
       <h1>SATYAVATHI</h1>
       <p>CATERINGS • WE PLAN IN YOUR BUDGET</p>
@@ -544,6 +631,7 @@
     <a href="#menu" class="nav-link">MENU</a>
     <a href="#chefExperience" class="nav-link">CHEF'S TABLE</a>
     <a href="#gallery" class="nav-link">GALLERY</a>
+    <a href="#locationFeature" class="nav-link">LOCATION</a>
     <a href="#contact" class="nav-link">CONTACT</a>
     <button class="download-menu-btn" id="downloadPdfBtn"><i class="fas fa-download"></i> Menu PDF</button>
   </div>
@@ -645,13 +733,36 @@
       <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?w=800" alt="Catering"></div>
       <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=800" alt="Biryani"></div>
       <div class="swiper-slide"><img src="Image1.png" alt="Biryani"></div>
-      <!-- <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1574484284003-9d8ba8de18a3?w=800" alt="Sweets"></div> -->
       <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=800" alt="Live Counter"></div>
       <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800" alt="Wedding"></div>
     </div>
     <div class="swiper-pagination"></div>
     <div class="swiper-button-next"></div>
     <div class="swiper-button-prev"></div>
+  </div>
+</section>
+
+<!-- NEW LOCATION FEATURE: Google Map Embed with Direction Button -->
+<section id="locationFeature">
+  <div class="location-section" data-aos="fade-up">
+    <div class="section-title" style="font-size:2.5rem;"><span>📍 Our</span> Royal Address</div>
+    <div class="gold-accent"></div>
+    <div class="location-grid">
+      <div class="location-details">
+        <h3><i class="fas fa-map-pin"></i> Visit Our Grand Kitchen</h3>
+        <div class="address-card">
+          <p><i class="fas fa-building"></i> <strong>Satyavathi Caterings</strong></p>
+          <p><i class="fas fa-location-dot"></i> 48-11/3-1/4, Koneru Rama Krishnaiah St, Currency Nagar 6th, Vijayawada, Andhra Pradesh - 520008</p>
+          <p><i class="fas fa-clock"></i> Mon - Sun: 9:00 AM to 9:00 PM</p>
+          <p><i class="fas fa-phone-alt"></i> +91 90302 71841</p>
+        </div>
+        <button class="direction-btn" id="getDirectionsBtn"><i class="fab fa-google"></i> Get Directions on Google Maps</button>
+      </div>
+      <div class="map-iframe-container">
+        <!-- Embedded Google Map from share link provided -->
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3827.714293632942!2d80.64138477483253!3d16.40464748428316!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a35f105a72c6f8d%3A0x6e2a3b9c8a5f2e1d!2sKoneru%20Rama%20Krishnaiah%20St%2C%20Currency%20Nagar%2C%20Vijayawada%2C%20Andhra%20Pradesh!5e0!3m2!1sen!2sin!4v1712150000000!5m2!1sen!2sin" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -769,20 +880,18 @@
     });
   }
   
-  // PDF Generation
-  function generateAndDownloadPDF() {
-    const pdfContent = document.createElement('div');
-    pdfContent.style.fontFamily = 'Poppins, sans-serif';
-    pdfContent.style.padding = '30px';
-    pdfContent.style.backgroundColor = '#fffaf5';
-    pdfContent.style.color = '#2c2418';
-    pdfContent.innerHTML = `<div style="text-align:center; border-bottom:2px solid #d4af37; padding-bottom:20px;"><div style="display:flex; align-items:center; justify-content:center; gap:15px;"><div style="background:#d4af37; width:60px; height:60px; border-radius:50%; display:flex; align-items:center; justify-content:center;"><i class="fas fa-crown"></i></div><div><h1 style="font-family:Playfair Display;">SATYAVATHI CATERINGS</h1><p>WE PLAN IN YOUR BUDGET</p></div></div><p>48-11/3-1/4, Koneru Rama Krishnaiah St | +91 90302 71841</p><p style="font-style:italic;">"Where Every Bite Tells a Story of Royalty & Tradition"</p></div><h2 style="text-align:center; color:#b8901d;">✦ PREMIUM MENU CARD ✦</h2>`;
-    for (const [category, items] of Object.entries(fullMenu)) {
-      pdfContent.innerHTML += `<div style="margin-top:25px;"><h3 style="background:#d4af37; display:inline-block; padding:5px 20px; border-radius:30px;">${category}</h3><div style="display:flex; flex-wrap:wrap; gap:12px; margin-top:12px;">${items.map(item => `<span style="background:#f3ede5; padding:6px 14px; border-radius:40px;">${item}</span>`).join('')}</div></div>`;
-    }
-    document.body.appendChild(pdfContent);
-    html2pdf().set({ margin: 0.5, filename: 'Satyavathi_Caterings_Menu.pdf', image: { type: 'jpeg', quality: 0.98 }, html2canvas: { scale: 2 }, jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' } }).from(pdfContent).save().then(() => document.body.removeChild(pdfContent));
+  // PDF Download using direct file (menu.pdf)
+  function downloadMenuPDF() {
+    const link = document.createElement('a');
+    link.href = 'menu.pdf';
+    link.download = 'Satyavathi_Menu.pdf';
+    link.click();
   }
+  
+  // PDF Buttons
+  document.getElementById('downloadPdfBtn')?.addEventListener('click', downloadMenuPDF);
+  document.getElementById('premiumDownloadBtn')?.addEventListener('click', downloadMenuPDF);
+  document.getElementById('heroDownloadBtn')?.addEventListener('click', downloadMenuPDF);
   
   // WhatsApp Integration
   function sendToWhatsApp(event) {
@@ -820,24 +929,19 @@
   toggleBtn.addEventListener('click', () => navLinksDiv.classList.toggle('mobile-open'));
   document.querySelectorAll('.nav-link').forEach(l => l.addEventListener('click', () => navLinksDiv.classList.remove('mobile-open')));
   
-  // PDF Buttons
-//   document.getElementById('downloadPdfBtn')?.addEventListener('click', generateAndDownloadPDF);
-//   document.getElementById('premiumDownloadBtn')?.addEventListener('click', generateAndDownloadPDF);
-//   document.getElementById('heroDownloadBtn')?.addEventListener('click', generateAndDownloadPDF);
-  
-function downloadMenuPDF() {
-  const link = document.createElement('a');
-  link.href = 'menu.pdf'; // your PDF file name
-  link.download = 'Satyavathi_Menu.pdf';
-  link.click();
-}
-
-// PDF Buttons
-document.getElementById('downloadPdfBtn')?.addEventListener('click', downloadMenuPDF);
-document.getElementById('premiumDownloadBtn')?.addEventListener('click', downloadMenuPDF);
-document.getElementById('heroDownloadBtn')?.addEventListener('click', downloadMenuPDF);
   // WhatsApp Form
   document.getElementById('whatsappContactForm').addEventListener('submit', sendToWhatsApp);
+  
+  // Get Directions Button (new feature for location)
+  const directionsBtn = document.getElementById('getDirectionsBtn');
+  if (directionsBtn) {
+    directionsBtn.addEventListener('click', () => {
+      // Using encoded address for Vijayawata location
+      const destination = "48-11/3-1/4, Koneru Rama Krishnaiah St, Currency Nagar, Vijayawada, Andhra Pradesh 520008";
+      const mapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(destination)}`;
+      window.open(mapsUrl, '_blank');
+    });
+  }
 </script>
 </body>
 </html>
