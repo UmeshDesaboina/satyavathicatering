@@ -1016,6 +1016,24 @@
         </div>
         <div class="short-caption"><i class="fab fa-youtube"></i> Chef's Signature Style</div>
       </div>
+       <div class="short-card">
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/JjeYJ2y-GRI" title="Satyavathi Chef Signature Style Short" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="short-caption"><i class="fab fa-youtube"></i> Special Catering Short</div>
+      </div>
+       <div class="short-card">
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/iJIb6nrkOe4" title="Satyavathi Chef Signature Style Short" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="short-caption"><i class="fab fa-youtube"></i> Chef's Signature Style</div>
+      </div>
+       <div class="short-card">
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/KSptIyjeMCQ" title="Satyavathi Chef Signature Style Short" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="short-caption"><i class="fab fa-youtube"></i>Client Success Story</div>
+      </div>
     </div>
   </div>
 </section>
@@ -1094,6 +1112,16 @@
   <p>Download our full menu card featuring 150+ authentic dishes.</p>
   <button id="premiumDownloadBtn" class="btn-primary"><i class="fas fa-download"></i> Download Menu (PDF)</button>
 </div>
+<div class="download-section" data-aos="zoom-in">
+  <i class="fas fa-file-pdf" style="font-size: 3rem; color: var(--gold-primary); margin-bottom: 1rem;"></i>
+  <h3>Special Catering Menu PDF</h3>
+  <p>Download our exclusive special menu packages & premium dishes.</p>
+
+  <!-- ✅ UNIQUE ID -->
+  <button id="specialMenuDownloadBtn" class="btn-primary">
+    <i class="fas fa-download"></i> Download Special Menu (PDF)
+  </button>
+</div>
 
 <footer class="footer">
   <p>© 2025 SATYAVATHI CATERINGS — "Where Every Bite Tells a Story of Royalty & Tradition"</p>
@@ -1117,7 +1145,15 @@
     "Main Course (Non-Veg)": ["Natu Kodi Iguru", "Mutton Rogan Josh", "Prawns Curry", "Chicken Chettinad", "Fish Curry", "Egg Curry", "Kodi Kura", "Royyala Vepudu"],
     "Rice & Biryani": ["Hyderabadi Veg Biryani", "Chicken Dum Biryani", "Mutton Biryani", "Prawns Biryani", "Ghee Rice", "Curd Rice", "Tomato Rice", "Bisi Bele Bath", "Puliyogare"],
     "Breads": ["Butter Naan", "Garlic Naan", "Tandoori Roti", "Rumali Roti", "Alu Paratha", "Laccha Paratha", "Poori"],
-    "Desserts": ["Gulab Jamun", "Rasmalai", "Jalebi", "Double Ka Meetha", "Carrot Halwa", "Badam Kheer", "Ice Creams", "Rasgulla"]
+    "Desserts": ["Gulab Jamun", "Rasmalai", "Jalebi", "Double Ka Meetha", "Carrot Halwa", "Badam Kheer", "Ice Creams", "Rasgulla"],
+    "Special Menu": [
+    "Royal Wedding Platter",
+    "Live BBQ Counter",
+    "Hyderabadi Dum Special",
+    "Premium Dessert Combo",
+    "Chef Special Signature Thali",
+    "Festival Grand Feast"
+  ],
   };
   
   let activeCat = Object.keys(fullMenu)[0];
@@ -1179,6 +1215,14 @@
   document.getElementById('downloadPdfBtn')?.addEventListener('click', downloadMenuPDF);
   document.getElementById('premiumDownloadBtn')?.addEventListener('click', downloadMenuPDF);
   document.getElementById('heroDownloadBtn')?.addEventListener('click', downloadMenuPDF);
+
+  function downloadSpecialMenuPDF() {
+  const link = document.createElement('a');
+  link.href = 'MASTER VEG& NONVEG.pdf'; // 👈 upload this file later
+  link.download = 'Satyavathi_Special_Menu.pdf';
+  link.click();
+}
+document.getElementById('specialMenuDownloadBtn')?.addEventListener('click', downloadSpecialMenuPDF);
   
   function sendToWhatsApp(event) {
     event.preventDefault();
